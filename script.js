@@ -20,14 +20,14 @@ document.addEventListener('mousemove', (e) => {
 // Add project cards dynamically
 const projects = [
     {
-        title: "Roblox Game 1",
-        description: "A 3D platformer with unique mechanics",
+        title: "Game 1",
+        description: "Game",
         image: "path/to/image1.jpg",
         link: "https://www.roblox.com/games/your-game-id"
     },
     {
-        title: "Roblox Game 2",
-        description: "An adventure game with custom animations",
+        title: "Game 2",
+        description: "Game",
         image: "path/to/image2.jpg",
         link: "https://www.roblox.com/games/your-game-id"
     },
