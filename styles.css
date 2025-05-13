@@ -488,6 +488,19 @@ body {
     resize: vertical;
 }
 
+.contact-form button[type="submit"] {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-form button[type="submit"]:hover {
+    background: var(--primary-color);
+    color: var(--background-color);
+}
+
 /* Footer */
 footer {
     padding: 2rem;
