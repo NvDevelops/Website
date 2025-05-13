@@ -564,4 +564,16 @@ footer {
     .contact-form {
         order: 1;
     }
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+    background: transparent;
 } 

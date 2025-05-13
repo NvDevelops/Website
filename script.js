@@ -118,4 +118,78 @@ revealElements.forEach(element => {
 window.addEventListener('scroll', revealOnScroll);
 
 // Trigger initial reveal check
-revealOnScroll(); 
+revealOnScroll();
+
+// Particle Background FX
+(function() {
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const particleCount = 60;
+    const particles = [];
+    const colors = ['#00ff9d', '#00ffff', '#ff00ff', '#ffffff'];
+
+    function randomBetween(a, b) {
+        return a + Math.random() * (b - a);
+    }
+
+    function createParticle() {
+        const radius = randomBetween(1.5, 3.5);
+        return {
+            x: randomBetween(radius, width - radius),
+            y: randomBetween(radius, height - radius),
+            vx: randomBetween(-0.3, 0.3),
+            vy: randomBetween(-0.3, 0.3),
+            radius,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: randomBetween(0.5, 0.9)
+        };
+    }
+
+    function drawParticle(p) {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        ctx.restore();
+    }
+
+    function updateParticle(p) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < p.radius || p.x > width - p.radius) p.vx *= -1;
+        if (p.y < p.radius || p.y > height - p.radius) p.vy *= -1;
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        for (let p of particles) {
+            updateParticle(p);
+            drawParticle(p);
+        }
+        requestAnimationFrame(animate);
+    }
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+
+    window.addEventListener('resize', resize);
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(createParticle());
+    }
+    animate();
+})(); 
