@@ -67,8 +67,8 @@ animate();
 const projects = [
     {
         title: "Game 1",
-        description: "A brief description of the game",
-        longDescription: "A detailed description of the game, including its concept, development process, and key features. This can be multiple paragraphs long and provide much more information than the card description.",
+        description: "Yap",
+        longDescription: "Hella Yap",
         image: "path/to/image1.jpg",
         images: [
             "path/to/image1.jpg",
@@ -77,10 +77,7 @@ const projects = [
             "path/to/screenshot3.jpg"
         ],
         features: [
-            "Feature 1: Detailed explanation of this feature",
-            "Feature 2: How this feature enhances gameplay",
-            "Feature 3: Technical details about this feature",
-            "Feature 4: Impact on player experience"
+            "Holy Yap"
         ],
         links: {
             "Play Game": "https://www.roblox.com/games/your-game-id",
@@ -89,8 +86,8 @@ const projects = [
     },
     {
         title: "Game 2",
-        description: "Another game description",
-        longDescription: "Detailed description of the second game, including its unique selling points, development challenges, and achievements.",
+        description: "Yap",
+        longDescription: "Long Yap",
         image: "path/to/image2.jpg",
         images: [
             "path/to/image2.jpg",
@@ -99,15 +96,12 @@ const projects = [
             "path/to/screenshot6.jpg"
         ],
         features: [
-            "Feature 1: Description of this feature",
-            "Feature 2: How this feature works",
-            "Feature 3: Technical implementation details",
-            "Feature 4: Player feedback and reception"
+            "Yap"
         ],
         links: {
             "Play Game": "https://www.roblox.com/games/your-game-id-2",
             "View Trailer": "https://youtube.com/your-video-2",
-            "Source Code": "https://github.com/your-repo-2"
+            
         }
     }
     // Add more projects here
