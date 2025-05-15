@@ -14,55 +14,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Matrix Effect
-const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-class MatrixEffect {
-    constructor() {
-        this.fontSize = 14;
-        this.columns = Math.floor(canvas.width / this.fontSize);
-        this.drops = new Array(this.columns).fill(1);
-        this.characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
-    }
-
-    draw() {
-        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#00ff9d';
-        ctx.font = `${this.fontSize}px monospace`;
-
-        for (let i = 0; i < this.drops.length; i++) {
-            const text = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
-            ctx.fillText(text, i * this.fontSize, this.drops[i] * this.fontSize);
-
-            if (this.drops[i] * this.fontSize > canvas.height && Math.random() > 0.975) {
-                this.drops[i] = 0;
-            }
-            this.drops[i]++;
-        }
-    }
-}
-
-const matrix = new MatrixEffect();
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    matrix.draw();
-    requestAnimationFrame(animate);
-}
-
-animate();
-
 // Project data structure with enhanced details
 const projects = [];
 
@@ -555,4 +506,221 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchLatestTweet();
     // Refresh tweet every 5 minutes
     setInterval(fetchLatestTweet, 300000);
-}); 
+});
+
+// Floating Dots Background
+const dotsCanvas = document.createElement('canvas');
+dotsCanvas.id = 'dots-bg-canvas';
+dotsCanvas.style.position = 'fixed';
+dotsCanvas.style.top = '0';
+dotsCanvas.style.left = '0';
+dotsCanvas.style.width = '100vw';
+dotsCanvas.style.height = '100vh';
+dotsCanvas.style.zIndex = '-1';
+document.body.prepend(dotsCanvas);
+
+const dctx = dotsCanvas.getContext('2d');
+let dots = [];
+const DOTS_COUNT = 60;
+const DOT_COLOR = '#00ff9d';
+const DOT_RADIUS = 2.5;
+
+function resizeDotsCanvas() {
+    dotsCanvas.width = window.innerWidth;
+    dotsCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeDotsCanvas);
+resizeDotsCanvas();
+
+function createDots() {
+    dots = [];
+    for (let i = 0; i < DOTS_COUNT; i++) {
+        dots.push({
+            x: Math.random() * dotsCanvas.width,
+            y: Math.random() * dotsCanvas.height,
+            vx: (Math.random() - 0.5) * 0.2,
+            vy: (Math.random() - 0.5) * 0.2
+        });
+    }
+}
+createDots();
+
+function animateDots() {
+    dctx.clearRect(0, 0, dotsCanvas.width, dotsCanvas.height);
+    for (let dot of dots) {
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+        if (dot.x < 0 || dot.x > dotsCanvas.width) dot.vx *= -1;
+        if (dot.y < 0 || dot.y > dotsCanvas.height) dot.vy *= -1;
+        dctx.beginPath();
+        dctx.arc(dot.x, dot.y, DOT_RADIUS, 0, 2 * Math.PI);
+        dctx.fillStyle = DOT_COLOR;
+        dctx.globalAlpha = 0.6;
+        dctx.fill();
+        dctx.globalAlpha = 1;
+    }
+    requestAnimationFrame(animateDots);
+}
+animateDots();
+
+// --- Tic-Tac-Toe Game ---
+(function() {
+    const container = document.getElementById('tic-tac-toe-container');
+    if (!container) return;
+    let board = Array(9).fill(null);
+    let player = 'X';
+    let ai = 'O';
+    let gameOver = false;
+
+    function render() {
+        container.innerHTML = '';
+        const grid = document.createElement('div');
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = 'repeat(3, 60px)';
+        grid.style.gridGap = '8px';
+        grid.style.margin = '0 auto';
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement('button');
+            cell.textContent = board[i] || '';
+            cell.style.width = '60px';
+            cell.style.height = '60px';
+            cell.style.fontSize = '2em';
+            cell.style.background = '#181818';
+            cell.style.color = '#00ff9d';
+            cell.style.border = '2px solid #00ff9d';
+            cell.style.borderRadius = '8px';
+            cell.style.cursor = board[i] || gameOver ? 'not-allowed' : 'pointer';
+            cell.onclick = () => move(i);
+            grid.appendChild(cell);
+        }
+        container.appendChild(grid);
+        const status = document.createElement('div');
+        status.style.color = '#fff';
+        status.style.marginTop = '16px';
+        status.style.fontFamily = 'Orbitron, sans-serif';
+        status.style.fontSize = '1.1em';
+        if (gameOver) {
+            const winner = getWinner();
+            status.textContent = winner ? (winner === player ? 'You win!' : 'AI wins!') : 'Draw!';
+        } else {
+            status.textContent = 'Your turn!';
+        }
+        container.appendChild(status);
+        if (gameOver) {
+            const resetBtn = document.createElement('button');
+            resetBtn.textContent = 'Restart';
+            resetBtn.style.marginTop = '12px';
+            resetBtn.style.background = '#111';
+            resetBtn.style.color = '#00ff9d';
+            resetBtn.style.border = '2px solid #00ff9d';
+            resetBtn.style.borderRadius = '6px';
+            resetBtn.style.padding = '8px 18px';
+            resetBtn.style.fontFamily = 'Orbitron, sans-serif';
+            resetBtn.style.fontSize = '1em';
+            resetBtn.style.cursor = 'pointer';
+            resetBtn.onclick = () => {
+                board = Array(9).fill(null);
+                gameOver = false;
+                render();
+            };
+            container.appendChild(resetBtn);
+        }
+    }
+
+    function move(i) {
+        if (board[i] || gameOver) return;
+        board[i] = player;
+        if (getWinner() || board.every(cell => cell)) {
+            gameOver = true;
+            render();
+            return;
+        }
+        aiMove();
+        if (getWinner() || board.every(cell => cell)) {
+            gameOver = true;
+        }
+        render();
+    }
+
+    function aiMove() {
+        // Minimax AI
+        let bestScore = -Infinity;
+        let moveIdx = -1;
+        for (let i = 0; i < 9; i++) {
+            if (!board[i]) {
+                board[i] = ai;
+                let score = minimax(board, 0, false);
+                board[i] = null;
+                if (score > bestScore) {
+                    bestScore = score;
+                    moveIdx = i;
+                }
+            }
+        }
+        if (moveIdx !== -1) board[moveIdx] = ai;
+    }
+
+    function minimax(b, depth, isMaximizing) {
+        const winner = getWinner(b);
+        if (winner === ai) return 10 - depth;
+        if (winner === player) return depth - 10;
+        if (b.every(cell => cell)) return 0;
+        if (isMaximizing) {
+            let best = -Infinity;
+            for (let i = 0; i < 9; i++) {
+                if (!b[i]) {
+                    b[i] = ai;
+                    best = Math.max(best, minimax(b, depth + 1, false));
+                    b[i] = null;
+                }
+            }
+            return best;
+        } else {
+            let best = Infinity;
+            for (let i = 0; i < 9; i++) {
+                if (!b[i]) {
+                    b[i] = player;
+                    best = Math.min(best, minimax(b, depth + 1, true));
+                    b[i] = null;
+                }
+            }
+            return best;
+        }
+    }
+
+    function getWinner(b = board) {
+        const wins = [
+            [0,1,2],[3,4,5],[6,7,8],
+            [0,3,6],[1,4,7],[2,5,8],
+            [0,4,8],[2,4,6]
+        ];
+        for (let [a,b1,c] of wins) {
+            if (b[a] && b[a] === b[b1] && b[a] === b[c]) return b[a];
+        }
+        return null;
+    }
+
+    render();
+})();
+
+// Modal open/close for Coin Runner
+// (wrapped in DOMContentLoaded to ensure elements exist)
+document.addEventListener('DOMContentLoaded', function() {
+    const viewBtn = document.getElementById('viewProjectBtn');
+    const modal = document.getElementById('coinRunnerModal');
+    const closeBtn = document.getElementById('closeCoinRunnerModal');
+    if (viewBtn && modal && closeBtn) {
+        viewBtn.onclick = () => { modal.style.display = 'flex'; };
+        closeBtn.onclick = () => { modal.style.display = 'none'; };
+    }
+});
+// Neon glow and scale effect for button
+const style = document.createElement('style');
+style.innerHTML = `
+#viewProjectBtn:hover {
+  box-shadow: 0 0 16px #00ff9d, 0 0 32px #00ff9d66;
+  transform: scale(1.07);
+  background: #181818;
+}
+`;
+document.head.appendChild(style); 
