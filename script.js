@@ -64,48 +64,7 @@ function animate() {
 animate();
 
 // Project data structure with enhanced details
-const projects = [
-    {
-        title: "Game 1",
-        description: "Yap",
-        longDescription: "Hella Yap",
-        image: "path/to/image1.jpg",
-        images: [
-            "path/to/image1.jpg",
-            "path/to/screenshot1.jpg",
-            "path/to/screenshot2.jpg",
-            "path/to/screenshot3.jpg"
-        ],
-        features: [
-            "Holy Yap"
-        ],
-        links: {
-            "Play Game": "https://www.roblox.com/games/your-game-id",
-            "View Trailer": "https://youtube.com/your-video"
-        }
-    },
-    {
-        title: "Game 2",
-        description: "Yap",
-        longDescription: "Long Yap",
-        image: "path/to/image2.jpg",
-        images: [
-            "path/to/image2.jpg",
-            "path/to/screenshot4.jpg",
-            "path/to/screenshot5.jpg",
-            "path/to/screenshot6.jpg"
-        ],
-        features: [
-            "Yap"
-        ],
-        links: {
-            "Play Game": "https://www.roblox.com/games/your-game-id-2",
-            "View Trailer": "https://youtube.com/your-video-2",
-            
-        }
-    }
-    // Add more projects here
-];
+const projects = [];
 
 // Dynamically create project cards
 const projectGrid = document.querySelector('.project-grid');
@@ -114,13 +73,15 @@ projects.forEach(project => {
     const card = document.createElement('div');
     card.className = 'project-card';
     card.innerHTML = `
-        <div class="project-image">
-            <img src="${project.image}" alt="${project.title}">
+        <div class="project-image" style="height:200px;display:flex;align-items:center;justify-content:center;background:#111;">
+            <img src="${project.image}" alt="${project.title}" style="max-width:100%;max-height:100%;object-fit:contain;">
         </div>
         <div class="project-info">
             <h3>${project.title}</h3>
             <p>${project.description}</p>
-            <a href="#" class="btn secondary view-project">View Project</a>
+            <div class="project-links">
+                <a href="${project.links['Play Game']}" target="_blank" class="btn secondary">View Project</a>
+            </div>
         </div>
     `;
     projectGrid.appendChild(card);
