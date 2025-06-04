@@ -579,6 +579,9 @@ animateDots();
         grid.style.gridTemplateColumns = 'repeat(3, 60px)';
         grid.style.gridGap = '8px';
         grid.style.margin = '0 auto';
+        grid.style.justifyContent = 'center';
+        grid.style.alignItems = 'center';
+        grid.style.placeItems = 'center';
         for (let i = 0; i < 9; i++) {
             const cell = document.createElement('button');
             cell.textContent = board[i] || '';
@@ -723,4 +726,54 @@ style.innerHTML = `
   background: #181818;
 }
 `;
-document.head.appendChild(style); 
+document.head.appendChild(style);
+
+// Firebase configuration (for GitHub Pages, use compat SDK)
+const firebaseConfig = {
+  apiKey: "AIzaSyB-sU1dPElfhzEvVFec3ca6SvBV9EfN27Q",
+  authDomain: "website-b2882.firebaseapp.com",
+  projectId: "website-b2882",
+  storageBucket: "website-b2882.appspot.com", // fixed typo
+  messagingSenderId: "156074776436",
+  appId: "1:156074776436:web:44f61917d6076a163a7e21"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// View Tracking System using Firebase
+async function trackView() {
+    try {
+        // Get visitor's IP (using a free IP API)
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        // Add view to Firestore
+        await db.collection('views').add({
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            ip: ipData.ip,
+            userAgent: navigator.userAgent
+        });
+        updateViewCount();
+    } catch (error) {
+        console.error('Error tracking view:', error);
+    }
+}
+
+async function updateViewCount() {
+    try {
+        // Firestore count() aggregation
+        const snapshot = await db.collection('views').get();
+        const viewCountElement = document.getElementById('view-count');
+        if (viewCountElement) {
+            viewCountElement.textContent = snapshot.size;
+        }
+    } catch (error) {
+        console.error('Error updating view count:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    trackView();
+    setInterval(updateViewCount, 30000);
+}); 
