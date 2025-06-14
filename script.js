@@ -88,25 +88,40 @@ document.querySelectorAll('.project-card').forEach(card => {
 
 // Enhanced form submission handling with validation
 const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    // Basic form validation
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData);
     
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
         showMessage('Please enter a valid email address', 'error');
         return;
     }
     
-    // Show success message with animation
-    showMessage('Message sent successfully!', 'success');
-    
-    // Clear form
-    contactForm.reset();
+    try {
+        const response = await fetch('https://formspree.io/f/your-form-id', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: data.name,
+                email: data.email,
+                message: data.message,
+                to: 'nvdevelops@gmail.com'
+            })
+        });
+        
+        if (response.ok) {
+            showMessage('Message sent successfully!', 'success');
+            contactForm.reset();
+        } else {
+            showMessage('Failed to send message. Please try again.', 'error');
+        }
+    } catch (error) {
+        showMessage('An error occurred. Please try again later.', 'error');
+    }
 });
 
 // Helper function to show messages
@@ -224,23 +239,23 @@ class TextScramble {
     }
 }
 
-// Initialize text scramble on headings with fixed event listeners
+
 document.querySelectorAll('h1, h2, h3').forEach(heading => {
     const fx = new TextScramble(heading);
     const originalText = heading.innerText;
     
-    // Scramble on hover
+
     heading.addEventListener('mouseenter', () => {
         if (!fx.isAnimating) {
             fx.setText(originalText);
         }
     });
     
-    // Initial scramble
+
     fx.setText(originalText);
 });
 
-// Scroll Progress
+
 const scrollProgress = document.querySelector('.scroll-progress');
 
 window.addEventListener('scroll', () => {
@@ -249,7 +264,7 @@ window.addEventListener('scroll', () => {
     scrollProgress.style.transform = `scaleX(${scrolled / 100})`;
 });
 
-// Project Modal System
+
 const modalOverlay = document.createElement('div');
 modalOverlay.className = 'modal-overlay';
 document.body.appendChild(modalOverlay);
@@ -319,10 +334,10 @@ function createModal(project) {
     
     document.body.appendChild(modal);
     
-    // Add image preview functionality
+
     createImagePreview(modal);
     
-    // Add event listeners
+
     const closeBtn = modal.querySelector('.modal-close');
     closeBtn.addEventListener('click', () => {
         closeModal(modal);
@@ -334,7 +349,7 @@ function createModal(project) {
         }
     });
     
-    // Open modal
+
     setTimeout(() => {
         modalOverlay.classList.add('active');
         modal.classList.add('active');
@@ -352,7 +367,7 @@ function closeModal(modal) {
     }, 300);
 }
 
-// Update project card click handlers
+
 document.querySelectorAll('.project-card').forEach(card => {
     const viewButton = card.querySelector('.btn');
     if (viewButton) {
@@ -367,7 +382,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     }
 });
 
-// Section Transitions
+
 const sections = document.querySelectorAll('section');
 
 const observerOptions = {
@@ -388,7 +403,7 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-// Add typing effect to skill list
+
 const skillList = document.querySelectorAll('.skill-list li');
 skillList.forEach((skill, index) => {
     skill.style.opacity = '0';
@@ -401,114 +416,7 @@ skillList.forEach((skill, index) => {
     }, index * 100);
 });
 
-// Twitter Feed Integration
-async function fetchLatestTweet() {
-    const tweetContainer = document.getElementById('tweet-container');
-    const username = 'EnviousDevelops'; // Your Twitter username
 
-    try {
-        // Using Twitter API v2 through a proxy server
-        const response = await fetch(`https://api.twitter.com/2/users/by/username/${username}/tweets?max_results=1&tweet.fields=created_at,public_metrics,attachments&expansions=attachments.media_keys&media.fields=url,preview_image_url,type`, {
-            headers: {
-                'Authorization': 'Bearer YOUR_TWITTER_API_BEARER_TOKEN' // You'll need to replace this with your actual bearer token
-            }
-        });
-
-        const data = await response.json();
-        
-        if (data.data && data.data.length > 0) {
-            const tweet = data.data[0];
-            const media = data.includes?.media || [];
-            
-            // Format the tweet HTML
-            const tweetHTML = `
-                <div class="tweet">
-                    <div class="tweet-header">
-                        <img src="ProfilePic.jpg" alt="Profile" class="tweet-avatar">
-                        <div class="tweet-user">
-                            <span class="tweet-name">Nv</span>
-                            <span class="tweet-username">@${username}</span>
-                        </div>
-                    </div>
-                    <div class="tweet-content">
-                        ${formatTweetText(tweet.text)}
-                    </div>
-                    ${formatTweetMedia(media)}
-                    <div class="tweet-stats">
-                        <div class="tweet-stat">
-                            <i class="far fa-comment"></i>
-                            <span>${tweet.public_metrics.reply_count}</span>
-                        </div>
-                        <div class="tweet-stat">
-                            <i class="fas fa-retweet"></i>
-                            <span>${tweet.public_metrics.retweet_count}</span>
-                        </div>
-                        <div class="tweet-stat">
-                            <i class="far fa-heart"></i>
-                            <span>${tweet.public_metrics.like_count}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            tweetContainer.innerHTML = tweetHTML;
-        }
-    } catch (error) {
-        console.error('Error fetching tweet:', error);
-        tweetContainer.innerHTML = `
-            <div class="tweet-error">
-                <i class="fas fa-exclamation-circle"></i>
-                <p>Unable to load latest tweet</p>
-            </div>
-        `;
-    }
-}
-
-function formatTweetText(text) {
-    // Convert URLs to clickable links
-    text = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
-    
-    // Convert hashtags to links
-    text = text.replace(/#(\w+)/g, '<a href="https://twitter.com/hashtag/$1" target="_blank">#$1</a>');
-    
-    // Convert mentions to links
-    text = text.replace(/@(\w+)/g, '<a href="https://twitter.com/$1" target="_blank">@$1</a>');
-    
-    return text;
-}
-
-function formatTweetMedia(media) {
-    if (!media.length) return '';
-    
-    return media.map(item => {
-        if (item.type === 'photo') {
-            return `
-                <div class="tweet-media">
-                    <img src="${item.url}" alt="Tweet media">
-                </div>
-            `;
-        } else if (item.type === 'video') {
-            return `
-                <div class="tweet-media">
-                    <video controls>
-                        <source src="${item.url}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            `;
-        }
-        return '';
-    }).join('');
-}
-
-// Fetch tweet when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    fetchLatestTweet();
-    // Refresh tweet every 5 minutes
-    setInterval(fetchLatestTweet, 300000);
-});
-
-// Floating Dots Background
 const dotsCanvas = document.createElement('canvas');
 dotsCanvas.id = 'dots-bg-canvas';
 dotsCanvas.style.position = 'fixed';
@@ -563,7 +471,7 @@ function animateDots() {
 }
 animateDots();
 
-// --- Tic-Tac-Toe Game ---
+
 (function() {
     const container = document.getElementById('tic-tac-toe-container');
     if (!container) return;
@@ -646,7 +554,7 @@ animateDots();
     }
 
     function aiMove() {
-        // Minimax AI
+
         let bestScore = -Infinity;
         let moveIdx = -1;
         for (let i = 0; i < 9; i++) {
@@ -706,8 +614,7 @@ animateDots();
     render();
 })();
 
-// Modal open/close for Coin Runner
-// (wrapped in DOMContentLoaded to ensure elements exist)
+
 document.addEventListener('DOMContentLoaded', function() {
     const viewBtn = document.getElementById('viewProjectBtn');
     const modal = document.getElementById('coinRunnerModal');
@@ -717,7 +624,7 @@ document.addEventListener('DOMContentLoaded', function() {
         closeBtn.onclick = () => { modal.style.display = 'none'; };
     }
 });
-// Neon glow and scale effect for button
+
 const style = document.createElement('style');
 style.innerHTML = `
 #viewProjectBtn:hover {
@@ -728,52 +635,5 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-// Firebase configuration (for GitHub Pages, use compat SDK)
-const firebaseConfig = {
-  apiKey: "AIzaSyB-sU1dPElfhzEvVFec3ca6SvBV9EfN27Q",
-  authDomain: "website-b2882.firebaseapp.com",
-  projectId: "website-b2882",
-  storageBucket: "website-b2882.appspot.com", 
-  messagingSenderId: "156074776436",
-  appId: "1:156074776436:web:44f61917d6076a163a7e21"
-};
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
-// View Tracking System using Firebase
-async function trackView() {
-    try {
-        // Get visitor's IP (using a free IP API)
-        const ipResponse = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipResponse.json();
-        // Add view to Firestore
-        await db.collection('views').add({
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            ip: ipData.ip,
-            userAgent: navigator.userAgent
-        });
-        updateViewCount();
-    } catch (error) {
-        console.error('Error tracking view:', error);
-    }
-}
-
-async function updateViewCount() {
-    try {
-        // Firestore count() aggregation
-        const snapshot = await db.collection('views').get();
-        const viewCountElement = document.getElementById('view-count');
-        if (viewCountElement) {
-            viewCountElement.textContent = snapshot.size;
-        }
-    } catch (error) {
-        console.error('Error updating view count:', error);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    trackView();
-    setInterval(updateViewCount, 30000);
-}); 

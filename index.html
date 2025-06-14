@@ -186,7 +186,7 @@
         <div style="margin: 48px auto 0 auto; max-width: 700px; text-align: center;">
             <h2 style="color:#00ff9d; font-family:'Orbitron',sans-serif; text-align:center;">Play Tic-Tac-Toe</h2>
             <p style="color:#fff; font-family:'Roboto',sans-serif; font-size:1.1em; margin-bottom:18px; opacity:0.85; text-align:center;">
-                This was a small, fun HTML project I did. Try and beat it! It's pretty difficult!
+                This was a small, fun JavaScript project I did. Try and beat it! It's pretty difficult!
             </p>
             <div id="tic-tac-toe-container" style="display:flex;justify-content:center;"></div>
         </div>
@@ -220,41 +220,20 @@
                 </form>
             </div>
         </section>
-
-        <!-- Add this where you want to display the view count -->
-        <div class="view-counter">
-            <span>Total Views: </span>
-            <span id="view-count">0</span>
-        </div>
     </main>
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 NvDev. All rights reserved.</p>
+            <p>&copy; 2024 NvDev. All rights reserved.</p>
+            <p>Licensed under the <a href="LICENSE" style="color: #00ff9d; text-decoration: none;">MIT License</a></p>
         </div>
     </footer>
 
-    <!-- Add Firebase SDK (must be before script.js) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
     <style>
     .view-project-link:hover {
       color: #00ffaa;
       text-shadow: 0 0 8px #00ff9d;
-    }
-
-    .view-counter {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(0, 0, 0, 0.8);
-        color: #00ff9d;
-        padding: 10px 20px;
-        border-radius: 20px;
-        font-family: 'Orbitron', sans-serif;
-        border: 1px solid #00ff9d;
-        box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
     }
     </style>
 </body>
