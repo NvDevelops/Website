@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Design Portfolio</title>
+    <title>Nv - Game Designer & 3D Artist</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,240 +11,217 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div class="scroll-progress"></div>
-
-    
-    <header class="header">
-        <nav class="nav-container">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
             <div class="logo">Nv</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+                            <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#working-on">Working On</a></li>
+                    <li><a href="#models">Models</a></li>
+                    <li><a href="#games">Games</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+        </div>
+    </nav>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1 class="glitch-text">Game Designer & 3D Artist</h1>
-                <p class="glitch-text2">Nv - 18</p>
-                <div class="cta-buttons">
-                    <a href="#about" class="btn primary">About Me</a>
-                    <a href="#projects" class="btn secondary">View Projects</a>
-                </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Game Designer & 3D Artist</h1>
+            <p class="hero-subtitle">Nv - 18</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">About Me</a>
+                <a href="#skills" class="btn btn-secondary">View Skills</a>
             </div>
-        </section>
+        </div>
+        <div class="hero-background"></div>
+    </section>
 
-        <section id="about" class="about">
-            <h2>About Me</h2>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="ProfilePic.jpg" alt="Profile Image">
+                    <img src="ProfilePic.jpg" alt="Nv Profile">
                 </div>
                 <div class="about-text">
-                    <p class="bio-text">Hello, I'm Nv. I am a 18 year old game designer and 3D artist. I am currently a student, studying Computer Science. I am available for commissions, feel free to contact me.</p>
-                    
-                    <div class="skills">
-                        <h3>Skills & Expertise</h3>
-                        <ul class="skill-list">
-                            <li>3D Modeling & Texturing</li>
-                            <li>Visual Effects (VFX)</li>
-                            <li>Game Scripting</li>
-                            <li>UI/UX Design</li>
-                            <li>Project Management</li>
-                        </ul>
-                    </div>
-
+                    <p>Hello, I'm Nv. I am a 18 year old game designer and 3D artist. I am currently a student, studying Computer Science. I am available for commissions, feel free to contact me.</p>
                     <div class="experience">
                         <h3>Experience</h3>
                         <p>1 year of 3D modeling, 1 year of UI Design, 2 years of Game Development prior to Roblox(Unity and Unreal Engine).</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="timeline" class="timeline">
-            <h2>Education & Journey</h2>
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Computer Science Major</h3>
-                        <p class="timeline-date">2024 - Present</p>
-                        <p>Currently pursuing a degree in Computer Science with a focus on game development. Continuously enhancing skills in:</p>
-                        <ul class="timeline-skills">
-                            <li>3D Modeling in Blender</li>
-                            <li>Learning Different Programming Languages</li>
-                            <li>Project Management</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="tools" class="tools">
-            <h2 style="color:#00ff9d; font-family:'Orbitron',sans-serif; text-align:center; font-size:2.2em; margin-bottom:24px;">Software & Tools</h2>
-            <div class="tools-grid">
-                <div class="tool-category">
-                    <h3 style="color:#00ff9d; font-family:'Orbitron',sans-serif; text-align:center; font-size:1.3em;">Game Development</h3>
-                    <ul class="tool-list">
-                        <li><i class="fas fa-gamepad"></i> Roblox Studio</li>
-                        <li><i class="fas fa-gamepad"></i> Godot</li>
-                        <li><i class="fas fa-cube"></i> Blender</li>
-                        <li><i class="fas fa-paint-brush"></i> Adobe Creative Suite</li>
-                    </ul>
-                </div>
-                <div class="tool-category">
-                    <h3 style="color:#00ff9d; font-family:'Orbitron',sans-serif; text-align:center; font-size:1.3em;">Programming</h3>
-                    <ul class="tool-list">
-                        <li><i class="fab fa-python"></i> Python</li>
-                        <li><i class="fab fa-js"></i> JavaScript</li>
-                        <li><i class="fas fa-code"></i> C++</li>
-                    </ul>
-                </div>
-                <div class="tool-category">
-                    <h3 style="color:#00ff9d; font-family:'Orbitron',sans-serif; text-align:center; font-size:1.3em;">Development Tools</h3>
-                    <ul class="tool-list">
-                        <li><i class="fab fa-git-alt"></i> Git</li>
-                        <li><i class="fab fa-github"></i> GitHub</li>
-                        <li><i class="fas fa-terminal"></i> VS Code</li>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>3D Modeling & Texturing</h3>
+                    <ul>
+                        <li>Blender</li>
+                        <li>Currently improving on Texturing</li>
+                        <li>Getting better at UV Mapping</li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="twitter-feed" class="twitter-feed">
-            <h2 style="color:#00ff9d; font-family:'Orbitron',sans-serif; text-align:center; font-size:2.2em; margin-bottom:24px;">Latest Updates</h2>
-            <div class="twitter-container">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">I love making modular stuff<a href="https://twitter.com/hashtag/RobloxDev?src=hash&amp;ref_src=twsrc%5Etfw">#RobloxDev</a> | <a href="https://twitter.com/hashtag/RobloxDevs?src=hash&amp;ref_src=twsrc%5Etfw">#RobloxDevs</a> <a href="https://t.co/K4TPd5JnPv">pic.twitter.com/K4TPd5JnPv</a></p>&mdash; EnvyDevelops (@EnviousDevelops) <a href="https://twitter.com/EnviousDevelops/status/1935816842284810661">May 3, 2025</a></blockquote>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- Working On Section -->
+    <section id="working-on" class="working-on">
+        <div class="container">
+            <h2 class="section-title">WORKING ON</h2>
+            <div class="working-on-grid">
+                <div class="working-on-card">
+                    <h3>Lua Scripting</h3>
+                    <p>Currently learning and improving Lua scripting skills for Roblox development.</p>
+                </div>
+                <div class="working-on-card">
+                    <h3>Building</h3>
+                    <p>Developing building and construction skills in Roblox Studio.</p>
+                </div>
+                <div class="working-on-card">
+                    <h3>Rigging and Animation</h3>
+                    <p>Learning character rigging and animation techniques in Blender.</p>
+                </div>
+                <div class="working-on-card">
+                    <h3>3D</h3>
+                    <p>Currently working on improving higher 3D model levels and texturing.</p>
+                </div>
+                <div class="working-on-card">
+                    <h3>UI/UX Design</h3>
+                    <p>Learning interface design, user experience, and prototyping techniques.</p>
+                </div>
+                <div class="working-on-card">
+                    <h3>VFX</h3>
+                    <p>Learning slowly VFX to add to my models.</p>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
+        </div>
+    </section>
 
-        <section id="projects" class="projects">
-            <h2>Featured Projects</h2>
-            <div class="project-grid" style="display:flex;gap:32px;justify-content:center;">
-                <div class="project-card" style="width:400px; margin: 0 auto; border:2px solid #00ff9d; border-radius:12px; box-shadow:0 0 16px #00ff9d33; background:#111; transition:transform 0.2s;">
-                    <div class="project-image" style="height:200px;display:flex;align-items:center;justify-content:center;background:#111; padding: 10px;">
-                        <img src="growacircle.png" alt="Grow a Circle Game Screenshot" style="width:100%;height:100%;object-fit:contain; border:2px solid #00ff9d; border-radius:8px;">
-                    </div>
-                    <div class="project-info" style="padding: 20px; text-align:center;">
-                        <h3 style="color:#00ff9d; font-family:'Orbitron',sans-serif; font-size:1.5em; margin-bottom:12px;">Grow a Circle</h3>
-                        <p style="color:#fff; font-size:1em; line-height:1.5; margin-bottom:20px; opacity:0.9;">
-                            An Agar.io-inspired game. 
-                            Built entirely from scratch with custom mechanics and smooth gameplay.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://www.roblox.com/games/115027898749081/Update-1-Grow-a-Circle" target="_blank" rel="noopener noreferrer" class="view-project-link"
-                               style="color:#00ff9d;text-decoration:underline;font-size:1.1em;font-family:'Orbitron',sans-serif;cursor:pointer;display:inline-block;transition:color 0.2s; padding: 8px 20px; border: 2px solid #00ff9d; border-radius: 6px;">
-                              Play Now
-                            </a>
+
+
+    <!-- Models Section -->
+    <section id="models" class="models">
+        <div class="container">
+            <h2 class="section-title">3D Models</h2>
+            
+            <div class="models-category">
+                <h3>Assets</h3>
+                <div class="models-grid">
+                    <div class="model-card">
+                        <div class="model-image">
+                            <img src="Screenshot 2025-06-22 113130.png" alt="Pets">
+                        </div>
+                        <div class="model-content">
+                            <h4>Pets</h4>
+                            <p>I can make pets in a few different designs.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="portfolio" class="portfolio">
-            <h2 style="color:#00ff9d; font-family:'Orbitron',sans-serif; text-align:center; font-size:2.2em; margin-bottom:24px;">3D Modeling Portfolio</h2>
-            <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; padding: 20px; max-width: 1200px; margin: 0 auto;">
-                <div class="portfolio-item" style="background: #111; border: 2px solid #00ff9d; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-                    <div class="portfolio-image" style="height: 250px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #111;">
-                        <img src="pistol.png" alt="3D Modeled Pistol" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+            <div class="models-category">
+                <h3>Weapons</h3>
+                <div class="models-grid">
+                    <div class="model-card">
+                        <div class="model-image">
+                            <img src="pistol.png" alt="Custom Pistol" onerror="console.log('Pistol image failed to load'); this.style.border='2px solid red';">
+                        </div>
+                        <div class="model-content">
+                            <h4>Custom Pistol</h4>
+                            <p>A detailed 3D model of a custom pistol with realistic textures.</p>
+                        </div>
                     </div>
-                    <div class="portfolio-info" style="padding: 16px;">
-                        <h3 style="color: #00ff9d; font-family: 'Orbitron', sans-serif; margin-bottom: 8px;">Custom Pistol</h3>
-                        <p style="color: #fff; font-size: 0.9em;">A 3D model of a custom pistol.</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" style="background: #111; border: 2px solid #00ff9d; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-                    <div class="portfolio-image" style="height: 250px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #111;">
-                        <img src="Shu Kagune.png" alt="Shuu's Kagune Model" style="max-width: 90%; max-height: 90%; object-fit: contain;">
-                    </div>
-                    <div class="portfolio-info" style="padding: 16px;">
-                        <h3 style="color: #00ff9d; font-family: 'Orbitron', sans-serif; margin-bottom: 8px;">Shuu's Kagune</h3>
-                        <p style="color: #fff; font-size: 0.9em;">A detailed recreation of Shuu's kagune from Tokyo Ghoul, challenged myself after seeing Pyro's video on it.</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" style="background: #111; border: 2px solid #00ff9d; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-                    <div class="portfolio-image" style="height: 250px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #111;">
-                        <img src="trident.png" alt="3D Modeled Trident" style="max-width: 90%; max-height: 90%; object-fit: contain;">
-                    </div>
-                    <div class="portfolio-info" style="padding: 16px;">
-                        <h3 style="color: #00ff9d; font-family: 'Orbitron', sans-serif; margin-bottom: 8px;">Trident</h3>
-                        <p style="color: #fff; font-size: 0.9em;">A 3D model of a mythical trident, for a commission.</p>
+                    <div class="model-card">
+                        <div class="model-image">
+                            <img src="trident.png" alt="Mythical Trident">
+                        </div>
+                        <div class="model-content">
+                            <h4>Mythical Trident</h4>
+                            <p>A 3D model of a mythical trident, created for a commission.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" style="background: #111; border: 2px solid #00ff9d; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-                    <div class="portfolio-image" style="height: 250px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #111;">
-                        <img src="Screenshot 2025-06-22 113130.png" alt="3D Modeled Trident" style="max-width: 90%; max-height: 90%; object-fit: contain;">
-                    </div>
-                    <div class="portfolio-info" style="padding: 16px;">
-                        <h3 style="color: #00ff9d; font-family: 'Orbitron', sans-serif; margin-bottom: 8px;">Pets</h3>
-                        <p style="color: #fff; font-size: 0.9em;">I can make pets in a few different designs.</p>
-                    </div>
-                </div>
-                
             </div>
-        </section>
 
-        <div style="margin: 48px auto 0 auto; max-width: 700px; text-align: center;">
-            <h2 style="color:#00ff9d; font-family:'Orbitron',sans-serif; text-align:center;">Play Tic-Tac-Toe</h2>
-            <p style="color:#fff; font-family:'Roboto',sans-serif; font-size:1.1em; margin-bottom:18px; opacity:0.85; text-align:center;">
-                This was a small, fun JavaScript project I did. Try and beat it! It's pretty difficult!
-            </p>
-            <div id="tic-tac-toe-container" style="display:flex;justify-content:center;"></div>
+            <div class="models-category">
+                <h3>Characters</h3>
+                <div class="models-grid">
+                    <div class="model-card">
+                        <div class="model-image">
+                            <img src="Shu Kagune.png" alt="Shuu's Kagune">
+                        </div>
+                        <div class="model-content">
+                            <h4>Shuu's Kagune</h4>
+                            <p>A detailed recreation of Shuu's kagune from Tokyo Ghoul, challenged myself after seeing Pyro's video on it.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <section id="contact" class="contact">
-            <h2>Inquiries</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p class="timezone"><i class="fas fa-clock"></i> Available 10AM - 10PM PST (Pacific Standard Time) </p>
-                    <p class="email"><i class="fas fa-envelope"></i> <a href="mailto:nvdevelops@gmail.com">nvdevelops@gmail.com</a></p>
-                    <div class="social-links">
-                        <a href="https://www.roblox.com/users/4157941483/profile" target="_blank" class="social-icon roblox-icon">
-                            <img src="Roblox_Logo.svg.png"  style="width: 25px; height: 25px;">
-                        </a>
-                        <a href="https://x.com/EnviousDevelops" target="_blank" class="social-icon">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
-                        <a href="https://discord.gg/GCwmhKdSvq" target="_blank" class="social-icon">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="https://www.youtube.com/channel/UCBY8mjch2o0NLegquSSgeTw" target="_blank" class="social-icon">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+    <!-- Games Section -->
+    <section id="games" class="games">
+        <div class="container">
+            <h2 class="section-title">Games</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="growacircle.png" alt="Grow a Circle" onerror="console.log('Grow a Circle image failed to load'); this.style.border='2px solid red';">
+                    </div>
+                    <div class="game-content">
+                        <h3>Grow a Circle</h3>
+                        <p>An Agar.io-inspired game built entirely from scratch with custom mechanics and smooth gameplay.</p>
+                        <a href="https://www.roblox.com/games/115027898749081/Update-1-Grow-a-Circle" target="_blank" class="btn btn-primary">Play Now</a>
                     </div>
                 </div>
-                <form id="contact-form" class="contact-form">
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Message" required></textarea>
-                    <button type="submit" class="btn primary">Send Message</button>
-                </form>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 NvDev. All rights reserved.</p>
-            <p>Licensed under the <a href="LICENSE" style="color: #00ff9d; text-decoration: none;">MIT License</a></p>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contacts</h2>
+            <div class="social-links">
+                <a href="https://www.roblox.com/users/4157941483/profile" target="_blank" class="social-link">
+                    <img src="Roblox_Logo.svg.png" alt="Roblox">
+                    <span>Roblox</span>
+                </a>
+                <a href="https://x.com/EnviousDevelops" target="_blank" class="social-link">
+                    <i class="fab fa-x-twitter"></i>
+                    <span>X (Twitter)</span>
+                </a>
+                <div class="social-link discord-info">
+                    <i class="fab fa-discord"></i>
+                    <span>User is _nv</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 NvDev. All rights reserved.</p>
+            <p>Licensed under the <a href="LICENSE">MIT License</a></p>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <style>
-    .view-project-link:hover {
-      color: #00ffaa;
-      text-shadow: 0 0 8px #00ff9d;
-    }
-    </style>
 </body>
 </html> 
