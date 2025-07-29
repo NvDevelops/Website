@@ -278,6 +278,7 @@ function typeWriterWithCursor(element, text, speed = 100) {
         }
     }
     
+    // Start typing immediately
     type();
 }
 
@@ -295,56 +296,27 @@ document.head.appendChild(cursorStyle);
 window.addEventListener('load', () => {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        typeWriterWithCursor(heroTitle, originalText, 50);
+        // Temporarily disable typing animation - just show the full text
+        heroTitle.textContent = 'Game Designer & 3D Artist';
+        console.log('Hero title set to:', heroTitle.textContent);
     }
     
-    // Add glitch effect to section titles and card titles
-    document.querySelectorAll('.section-title, .skill-card h3, .working-on-card h3, .ui-card h3, .model-card h4, .game-card h4').forEach(element => {
-        addGlitchEffect(element);
+    // Add glitch effect to section titles and card titles (excluding hero title)
+    document.querySelectorAll('.section-title, .skill-card h3, .working-on-card h3, .model-card h4, .game-card h4').forEach(element => {
+        if (!element.classList.contains('hero-title')) {
+            addGlitchEffect(element);
+        }
     });
     
-    // Debug image loading (simplified)
-    const profileImage = document.querySelector('.about-image img');
-    if (profileImage) {
-        console.log('Profile image src:', profileImage.src);
-        
-        // Monitor for any changes to the image
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                    console.log('Image style changed:', profileImage.style.cssText);
-                }
-            });
-        });
-        
-        observer.observe(profileImage, {
-            attributes: true,
-            attributeFilter: ['style']
-        });
-    }
-    
-    // Debug game image loading
-    const gameImage = document.querySelector('.game-image img');
-    if (gameImage) {
-        console.log('Game image src:', gameImage.src);
-        gameImage.addEventListener('load', () => {
-            console.log('Game image loaded successfully');
-        });
-        gameImage.addEventListener('error', (e) => {
-            console.error('Game image failed to load:', e);
-        });
-    }
-    
-    // Debug model images loading
-    const modelImages = document.querySelectorAll('.model-image img');
-    modelImages.forEach((img, index) => {
-        console.log(`Model image ${index + 1} src:`, img.src);
+    // Debug all images
+    const allImages = document.querySelectorAll('img');
+    allImages.forEach((img, index) => {
+        console.log(`Image ${index + 1} src:`, img.src);
         img.addEventListener('load', () => {
-            console.log(`Model image ${index + 1} loaded successfully`);
+            console.log(`Image ${index + 1} loaded successfully`);
         });
         img.addEventListener('error', (e) => {
-            console.error(`Model image ${index + 1} failed to load:`, e);
+            console.error(`Image ${index + 1} failed to load:`, e);
         });
     });
 });

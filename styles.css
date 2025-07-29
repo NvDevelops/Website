@@ -172,7 +172,7 @@ body {
 
 .btn-secondary {
     background: transparent;
-    color: var(--primary);
+    color: var(--text);
     border: 2px solid var(--primary);
 }
 
@@ -1100,9 +1100,17 @@ body {
     transform: translateY(0);
 }
 
-/* Ensure about section and its content are always visible */
+/* Ensure all sections and their content are always visible */
 .about,
-.about * {
+.about *,
+.skills,
+.skills *,
+.working-on,
+.working-on *,
+.models,
+.models *,
+.games,
+.games * {
     opacity: 1 !important;
     transform: none !important;
 }
