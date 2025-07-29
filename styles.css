@@ -959,25 +959,7 @@ body {
     animation: borderGlow 2s ease-in-out infinite;
 }
 
-/* Background Particle System */
-.hero::before,
-.skills::before,
-.ui::before,
-.models::before,
-.games::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(192, 132, 252, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-}
+/* Background Particle System - Removed bright effects */
 
 /* Enhanced Section Titles */
 .section-title {
@@ -1117,10 +1099,7 @@ body {
 
 /* Enhanced Hero Background */
 .hero-background {
-    background: 
-        radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(139, 92, 246, 0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background: var(--background);
     animation: float 20s ease-in-out infinite;
 }
 
@@ -1210,23 +1189,7 @@ body {
     }
 }
 
-/* Add subtle background particles */
-.hero::after,
-.skills::after,
-.ui::after,
-.models::after,
-.games::after {
-    content: '✦ ✦ ✦';
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: var(--primary);
-    font-size: 1.5rem;
-    opacity: 0.2;
-    animation: floatParticle 8s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-}
+/* Add subtle background particles - Removed bright effects */
 
 /* Responsive Design */
 @media (max-width: 768px) {
