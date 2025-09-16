@@ -346,6 +346,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Force tab functionality to work
         initTeamTabs();
         
+        // Force all images to load
+        const allImages = document.querySelectorAll('img');
+        console.log('Forcing image loading...');
+        allImages.forEach((img, index) => {
+            if (img.src && !img.complete) {
+                console.log(`Loading image ${index + 1}: ${img.src}`);
+                img.load();
+            }
+            
+            // Add load event to show when image is ready
+            img.addEventListener('load', () => {
+                console.log(`✅ Image ${index + 1} loaded: ${img.src}`);
+                img.style.opacity = '1';
+            });
+            
+            img.addEventListener('error', () => {
+                console.log(`❌ Image ${index + 1} failed: ${img.src}`);
+                img.style.border = '2px solid red';
+                img.style.backgroundColor = '#ff000020';
+            });
+        });
+        
         // Also add direct event listeners as backup
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabPanels = document.querySelectorAll('.tab-panel');
