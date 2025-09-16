@@ -25,7 +25,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Add hover effects to cards
-document.querySelectorAll('.skill-card, .ui-card, .model-card, .game-card').forEach(card => {
+document.querySelectorAll('.skill-card, .ui-card, .work-item, .game-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-10px) scale(1.02)';
     });
@@ -100,10 +100,10 @@ const observer = new IntersectionObserver((entries) => {
             if (entry.target.classList.contains('skills-grid') || 
                 entry.target.classList.contains('working-on-grid') ||
                 entry.target.classList.contains('ui-grid') || 
-                entry.target.classList.contains('models-grid') || 
+                entry.target.classList.contains('work-grid') || 
                 entry.target.classList.contains('games-grid')) {
                 
-                const cards = entry.target.querySelectorAll('.skill-card, .working-on-card, .ui-card, .model-card, .game-card');
+                const cards = entry.target.querySelectorAll('.skill-card, .working-on-card, .ui-card, .work-item, .game-card');
                 cards.forEach((card, index) => {
                     setTimeout(() => {
                         card.classList.add('visible');
@@ -115,7 +115,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe all sections and grids (excluding about section)
-document.querySelectorAll('section:not(.about), .skills-grid, .working-on-grid, .ui-grid, .models-grid, .games-grid').forEach(element => {
+document.querySelectorAll('section:not(.about), .skills-grid, .working-on-grid, .ui-grid, .work-grid, .games-grid').forEach(element => {
     element.style.opacity = '0';
     element.style.transform = 'translateY(20px)';
     element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -159,7 +159,7 @@ const particles = createParticles();
 // Mouse trail effect removed as requested
 
 // Add magnetic effect to cards
-document.querySelectorAll('.skill-card, .working-on-card, .ui-card, .model-card, .game-card').forEach(card => {
+document.querySelectorAll('.skill-card, .working-on-card, .ui-card, .work-item, .game-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -308,18 +308,169 @@ window.addEventListener('load', () => {
         }
     });
     
+// Force abyss animations to work - wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        const abyssIcon = document.querySelector('.abyss-icon');
+        const abyssTitle = document.querySelector('.abyss-title');
+
+        console.log('Looking for abyss elements...');
+        console.log('Abyss icon:', abyssIcon);
+        console.log('Abyss title:', abyssTitle);
+
+        if (abyssIcon) {
+            console.log('Abyss icon found, forcing fast rotation');
+            
+            // Make it bigger
+            abyssIcon.style.width = '120px';
+            abyssIcon.style.height = '120px';
+            
+            // Force CSS animation
+            abyssIcon.style.animation = 'abyssSpin 2s linear infinite';
+            abyssIcon.style.transformOrigin = 'center';
+            abyssIcon.style.border = '3px solid #8b5cf6';
+            abyssIcon.style.boxShadow = '0 0 20px rgba(139, 92, 246, 0.6)';
+            
+            // Manual rotation as primary method
+            let rotation = 0;
+            const rotateInterval = setInterval(() => {
+                rotation += 4;
+                abyssIcon.style.transform = `rotate(${rotation}deg)`;
+                abyssIcon.style.transition = 'none';
+            }, 50);
+            
+            console.log('Icon rotation started');
+        } else {
+            console.log('Abyss icon NOT found!');
+        }
+        
+        // Force tab functionality to work
+        initTeamTabs();
+        
+        // Also add direct event listeners as backup
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        
+        console.log('Adding backup tab listeners...');
+        tabButtons.forEach(button => {
+            // Remove any existing listeners
+            button.onclick = null;
+            
+            // Add new listener
+            button.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const targetTab = this.getAttribute('data-tab');
+                console.log('Backup tab clicked:', targetTab);
+                
+                // Remove active from all
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+                
+                // Add active to clicked
+                this.classList.add('active');
+                const targetPanel = document.getElementById(targetTab);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                    console.log('Backup activated panel:', targetTab);
+                }
+            };
+        });
+    }, 1000); // Wait 1 second for everything to load
+});
+
+if (abyssTitle) {
+    console.log('Abyss title found, forcing wrap animation');
+    abyssTitle.style.animation = 'abyssGlow 3s ease-in-out infinite, abyssWrap 6s ease-in-out infinite';
+    abyssTitle.style.transformOrigin = 'center';
+    abyssTitle.style.willChange = 'transform, opacity';
+    
+    // Manual wrap animation as backup
+    let wrapPhase = 0;
+    setInterval(() => {
+        wrapPhase += 0.1;
+        const scale = Math.sin(wrapPhase) * 0.3 + 0.7;
+        const rotate = wrapPhase * 180;
+        const opacity = Math.sin(wrapPhase * 0.5) * 0.3 + 0.7;
+        abyssTitle.style.transform = `scale(${scale}) rotate(${rotate}deg)`;
+        abyssTitle.style.opacity = opacity;
+    }, 100);
+} else {
+    console.log('Abyss title NOT found!');
+}
+    
     // Debug all images
     const allImages = document.querySelectorAll('img');
+    console.log(`Found ${allImages.length} images total`);
+    
     allImages.forEach((img, index) => {
-        console.log(`Image ${index + 1} src:`, img.src);
-        img.addEventListener('load', () => {
-            console.log(`Image ${index + 1} loaded successfully`);
+        console.log(`Image ${index + 1}:`, {
+            src: img.src,
+            alt: img.alt,
+            complete: img.complete,
+            naturalWidth: img.naturalWidth,
+            naturalHeight: img.naturalHeight
         });
+        
+        img.addEventListener('load', () => {
+            console.log(`✅ Image ${index + 1} loaded successfully:`, img.src);
+        });
+        
         img.addEventListener('error', (e) => {
-            console.error(`Image ${index + 1} failed to load:`, e);
+            console.error(`❌ Image ${index + 1} failed to load:`, img.src, e);
+        });
+        
+        // Check if image is already loaded
+        if (img.complete && img.naturalWidth > 0) {
+            console.log(`✅ Image ${index + 1} already loaded:`, img.src);
+        } else if (img.complete && img.naturalWidth === 0) {
+            console.error(`❌ Image ${index + 1} failed to load (no dimensions):`, img.src);
+        }
+    });
+    
+    // Test if we can access the file system
+    console.log('Current URL:', window.location.href);
+    console.log('Current pathname:', window.location.pathname);
+    
+    // Initialize team tabs
+    initTeamTabs();
+});
+
+// Team Tab Functionality
+function initTeamTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    console.log('Initializing team tabs...');
+    console.log('Found tab buttons:', tabButtons.length);
+    console.log('Found tab panels:', tabPanels.length);
+    
+    tabButtons.forEach((button, index) => {
+        console.log(`Button ${index}:`, button.textContent, button.getAttribute('data-tab'));
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const targetTab = button.getAttribute('data-tab');
+            console.log('Clicked tab:', targetTab);
+            
+            // Remove active class from all buttons and panels
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding panel
+            button.classList.add('active');
+            const targetPanel = document.getElementById(targetTab);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+                console.log('Activated panel:', targetTab);
+            } else {
+                console.log('Panel not found:', targetTab);
+            }
         });
     });
-});
+}
 
 // Add glow effect on scroll
 window.addEventListener('scroll', () => {
@@ -391,6 +542,102 @@ window.addEventListener('load', () => {
         document.body.style.opacity = '1';
     }, 100);
 });
+
+// Lightbox logic
+(function initLightbox() {
+    const lightbox = document.querySelector('.lightbox');
+    if (!lightbox) return;
+
+    const backdrop = lightbox.querySelector('.lightbox-backdrop');
+    const imgEl = lightbox.querySelector('.lightbox-image');
+    const captionEl = lightbox.querySelector('.lightbox-caption');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+
+    function openLightbox(src, alt, caption) {
+        imgEl.src = src;
+        imgEl.alt = alt || 'Preview';
+        captionEl.textContent = caption || '';
+        lightbox.classList.add('is-visible');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('is-visible');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        // Clear src after animation frame to stop download if any
+        requestAnimationFrame(() => { imgEl.src = ''; });
+    }
+
+    // Open from portfolio/game images
+    document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && (target.closest('.work-image img') || target.closest('.game-image img'))) {
+            const img = target.closest('img');
+            const card = img.closest('.work-item, .game-card');
+            const title = card ? (card.querySelector('h4, h3')?.textContent || '') : '';
+            openLightbox(img.src, img.alt, title);
+        }
+    });
+
+    // Close interactions
+    backdrop.addEventListener('click', closeLightbox);
+    closeBtn.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Prevent image drag ghosting, enable wheel zoom
+    imgEl.addEventListener('dragstart', (e) => e.preventDefault());
+
+    let scale = 1;
+    let originX = 0;
+    let originY = 0;
+    let isPanning = false;
+    let startX = 0, startY = 0;
+
+    function applyTransform() {
+        imgEl.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+        imgEl.style.transition = 'transform 0.05s linear';
+    }
+
+    lightbox.addEventListener('wheel', (e) => {
+        if (!lightbox.classList.contains('is-visible')) return;
+        e.preventDefault();
+        const delta = Math.sign(e.deltaY);
+        const newScale = Math.min(4, Math.max(1, scale - delta * 0.1));
+        if (newScale !== scale) {
+            scale = newScale;
+            applyTransform();
+        }
+    }, { passive: false });
+
+    imgEl.addEventListener('mousedown', (e) => {
+        if (scale <= 1) return;
+        isPanning = true;
+        startX = e.clientX - originX;
+        startY = e.clientY - originY;
+        imgEl.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mousemove', (e) => {
+        if (!isPanning) return;
+        originX = e.clientX - startX;
+        originY = e.clientY - startY;
+        applyTransform();
+    });
+    window.addEventListener('mouseup', () => {
+        isPanning = false;
+        imgEl.style.cursor = '';
+    });
+
+    // Reset transform when image changes or modal closes
+    const resetTransform = () => {
+        scale = 1; originX = 0; originY = 0; applyTransform();
+    };
+    closeBtn.addEventListener('click', resetTransform);
+    backdrop.addEventListener('click', resetTransform);
+})();
 
 // Add keyboard navigation
 document.addEventListener('keydown', (e) => {
