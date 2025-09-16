@@ -547,6 +547,8 @@ body {
     backdrop-filter: blur(15px);
     position: relative;
     box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .work-item::before {
@@ -567,7 +569,7 @@ body {
 }
 
 .work-item:hover {
-    transform: translateY(-15px) scale(1.03);
+    transform: translateY(-15px) scale(1.03) rotateX(5deg) rotateY(5deg);
     box-shadow: 0 25px 50px rgba(139, 92, 246, 0.4);
     border-color: var(--secondary);
 }
@@ -1902,15 +1904,17 @@ body {
     opacity: 0.8;
 }
 
-/* Scroll-triggered animations */
+/* Scroll-triggered animations - 3D Card Flip Effect */
 .skill-card,
 .working-on-card,
 .ui-card,
 .work-item,
 .game-card {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
+    transform: translateY(50px) rotateY(0deg) scale(0.8);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .skill-card.visible,
@@ -1919,7 +1923,19 @@ body {
 .work-item.visible,
 .game-card.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) rotateX(0deg) rotateY(0deg) scale(1);
+    animation: cardLanding 1.5s ease-in-out forwards;
+}
+
+@keyframes cardLanding {
+    0% {
+        transform: translateY(50px) rotateY(0deg) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) rotateY(360deg) scale(1);
+        opacity: 1;
+    }
 }
 
 /* Ensure all sections and their content are always visible */

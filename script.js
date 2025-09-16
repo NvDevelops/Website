@@ -84,10 +84,10 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Enhanced intersection observer for fade-in effects
+// Enhanced intersection observer for fade-in effects - faster appearance
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.05,
+    rootMargin: '0px 0px -20px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -104,10 +104,9 @@ const observer = new IntersectionObserver((entries) => {
                 entry.target.classList.contains('games-grid')) {
                 
                 const cards = entry.target.querySelectorAll('.skill-card, .working-on-card, .ui-card, .work-item, .game-card');
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, index * 200);
+                // Make all cards appear at once for the 3D effect
+                cards.forEach((card) => {
+                    card.classList.add('visible');
                 });
             }
         }
@@ -419,6 +418,12 @@ if (abyssTitle) {
         
         img.addEventListener('error', (e) => {
             console.error(`❌ Image ${index + 1} failed to load:`, img.src, e);
+            // Try to reload the image
+            const originalSrc = img.src;
+            setTimeout(() => {
+                img.src = '';
+                img.src = originalSrc;
+            }, 500);
         });
         
         // Check if image is already loaded
