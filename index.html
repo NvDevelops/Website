@@ -11,30 +11,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">Nv</div>
-                            <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#working-on">Working On</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#games">Games</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#working-on">Working On</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Game Designer & 3D Artist</h1>
-            <p class="hero-subtitle">Nv - 19</p>
+            <h1 class="hero-title">Game Designer &amp; 3D Artist</h1>
+            <p class="hero-subtitle">Nv &mdash; 19</p>
             <div class="hero-buttons">
                 <a href="#about" class="btn btn-primary">About Me</a>
-                <a href="#skills" class="btn btn-secondary">View Skills</a>
+                <a href="#portfolio" class="btn btn-secondary">View Work</a>
             </div>
         </div>
         <div class="hero-background"></div>
@@ -46,14 +52,15 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="ProfilePic.jpg" alt="Nv Profile">
+                    <img src="NvIcon.png" alt="Nv Profile">
                 </div>
                 <div class="about-text">
-                    <p>Hello, I'm Nv. I am a 18 year old game designer and 3D artist. I am currently a student, studying Computer Science. I am available for commissions, feel free to contact me.</p>
+                    <p>Hello, I'm Nv. I'm a 19 year old game designer and 3D artist, currently studying Computer Science. I'm available for commissions &mdash; feel free to reach out.</p>
                     <div class="experience">
                         <h3>Experience</h3>
-                        <p>1 year of 3D modeling, 1 year of UI Design, 2 years of Game Development prior to Roblox(Unity and Unreal Engine).</p>
+                        <p>1 year of 3D modeling &bull; 1 year of UI Design &bull; 2+ years of Game Development across Roblox, Unity, and Unreal Engine.</p>
                     </div>
+
                     <div class="team-section">
                         <h3>The Team I Work For</h3>
                         <div class="team-showcase">
@@ -66,63 +73,104 @@
                                     <p class="team-description">An elite team of developers and artists creating extraordinary digital experiences</p>
                                 </div>
                             </div>
-                            
-                                <div class="team-tabs">
-                                    <button class="tab-button active" onclick="switchTab('about', this)">About Team</button>
-                                    <button class="tab-button" onclick="switchTab('games', this)">Our Games</button>
-                                    <button class="tab-button" onclick="switchTab('connect', this)">Connect</button>
-                                </div>
-                            
+
+                            <div class="team-tabs">
+                                <button class="tab-button active" data-tab="team-about">About Team</button>
+                                <button class="tab-button" data-tab="team-games">Our Games</button>
+                                <button class="tab-button" data-tab="team-connect">Connect</button>
+                            </div>
+
                             <div class="tab-content">
-                                <div class="tab-panel active" id="about">
+                                <div class="tab-panel active" id="team-about">
                                     <div class="team-info-grid">
                                         <div class="info-card">
                                             <h5>🎮 Game Development</h5>
-                                            <p>Creating games for the Roblox Platform.</p>
+                                            <p>Creating games for the Roblox platform.</p>
                                         </div>
                                         <div class="info-card">
                                             <h5>🎨 Skills</h5>
-                                            <p>The team is diverse in their skills with experience in UI/UX Design, Programming, Animation, Art, and 3D Modeling.</p>
+                                            <p>A diverse team with experience in UI/UX Design, Programming, Animation, Art, and 3D Modeling.</p>
                                         </div>
                                         <div class="info-card">
                                             <h5>💡 Innovation</h5>
-                                            <p>Strive to be one of the best Developer Teams on the Roblox Platform.</p>
+                                            <p>Striving to be one of the best developer teams on the Roblox platform.</p>
                                         </div>
                                         <div class="info-card">
                                             <h5>🤝 Collaboration</h5>
-                                            <p>Developers on the team have worked on games for brands such as Youtube.</p>
+                                            <p>Team members have worked on games for brands such as YouTube.</p>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="tab-panel" id="games">
-                                    <div class="team-games">
-                                       
-                                        <div class="coming-soon">
-                                            <h5>🚀 We have several games releasing soon!</h5>
+
+                                <div class="tab-panel" id="team-games">
+                                    <div class="tg-grid">
+
+                                        <div class="tg-card">
+                                            <div class="tg-thumb">
+                                                <img src="https://tr.rbxcdn.com/180DAY-d71d2c2b600eab97dbcda9e7cbf8c2f1/512/512/Image/Png/noFilter" alt="Climb Scary 67 Slap Tower">
+                                            </div>
+                                            <div class="tg-info">
+                                                <h5>Climb Scary 67 Slap Tower</h5>
+                                                <p>Can you reach the top without being eaten? An obby packed with slaps, tricks, and chaos.</p>
+                                                <div class="tg-stats">
+                                                    <span><i class="fas fa-gamepad"></i> 900K+ Visits</span>
+                                                    <span><i class="fas fa-heart"></i> 53K Favorites</span>
+                                                </div>
+                                                <a href="https://www.roblox.com/games/96639401941432/Climb-Scary-67-Slap-Tower" target="_blank" class="btn btn-primary">Play Now</a>
+                                            </div>
                                         </div>
+
+                                        <div class="tg-card">
+                                            <div class="tg-thumb">
+                                                <img src="https://tr.rbxcdn.com/180DAY-11fa4ec3e4dd07c40e746020f6a6f549/512/512/Image/Png/noFilter" alt="Conveyor Fall Tower">
+                                            </div>
+                                            <div class="tg-info">
+                                                <h5>Conveyor Fall Tower</h5>
+                                                <p>Reach the top of the conveyor tower — then watch yourself fall. Troll your friends on the way up.</p>
+                                                <div class="tg-stats">
+                                                    <span><i class="fas fa-gamepad"></i> 118K+ Visits</span>
+                                                    <span><i class="fas fa-heart"></i> 11K Favorites</span>
+                                                </div>
+                                                <a href="https://www.roblox.com/games/126203415838533/Conveyor-Fall-Tower" target="_blank" class="btn btn-primary">Play Now</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="tg-card">
+                                            <div class="tg-thumb">
+                                                <img src="https://tr.rbxcdn.com/180DAY-68e3fd34cb7a69d83ffc19f686c3ed67/512/512/Image/Png/noFilter" alt="Enter Brainrot">
+                                            </div>
+                                            <div class="tg-info">
+                                                <h5>Enter Brainrot</h5>
+                                                <p>Climb a mountain, earn currency, and grow your character. Teamwork or chaos — your call.</p>
+                                                <div class="tg-stats">
+                                                    <span><i class="fas fa-gamepad"></i> 100K+ Visits</span>
+                                                    <span><i class="fas fa-heart"></i> 7.9K Favorites</span>
+                                                </div>
+                                                <a href="https://www.roblox.com/games/129954432457499/Enter-Brainrot" target="_blank" class="btn btn-primary">Play Now</a>
+                                            </div>
+                                        </div>
+
                                     </div>
+                                    <p class="tg-more">More games in development — stay tuned.</p>
                                 </div>
-                                
-                                <div class="tab-panel" id="connect">
+
+                                <div class="tab-panel" id="team-connect">
                                     <div class="connect-section">
                                         <h5>Connect with OPEN ABYSS</h5>
                                         <div class="social-grid">
                                             <a href="https://x.com/EnviousDevelops" target="_blank" class="social-card">
                                                 <i class="fab fa-x-twitter"></i>
                                                 <span>Follow on X</span>
-                                                <small>@OpenAbyss_
-                                                </small>
+                                                <small>@OpenAbyss_</small>
                                             </a>
-                                            
                                             <a href="https://www.roblox.com/communities/581063242/Open-Abyss#!/about" target="_blank" class="social-card">
                                                 <img src="Roblox_Logo.svg.png" alt="Roblox">
-                                                <span>Roblox Profile</span>
+                                                <span>Roblox Page</span>
                                                 <small>View Games</small>
                                             </a>
                                         </div>
                                         <div class="commission-info">
-                                            <h3>💼 Available for Colaboration</h3>
+                                            <h3>💼 Available for Collaboration</h3>
                                             <p>OPEN ABYSS is available for brand integrations and collaborations.</p>
                                         </div>
                                     </div>
@@ -134,19 +182,69 @@
             </div>
         </div>
     </section>
-     <!-- Portfolio Section -->
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-single">
+                <div class="skill-card">
+                    <ul>
+                        <li>3D Modeling (Blender — props, weapons, accessories, and assets for Roblox)</li>
+                        <li>Roblox Studio</li>
+                        <li>Game Design</li>
+                        <li>Game &amp; Project Structure</li>
+                        <li>UI Design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Working On Section -->
+    <section id="working-on" class="working-on">
+        <div class="container">
+            <h2 class="section-title">Currently Working On</h2>
+            <div class="working-on-grid">
+                <div class="working-on-card">
+                    <h3>🎮 Grow a Circle Remaster</h3>
+                    <p>Reworking the game from the ground up to actually be fun and have real replayability.</p>
+                </div>
+                <div class="working-on-card">
+                    <h3>🎨 Texture Painting</h3>
+                    <p>Practicing hand-painted and PBR textures directly in Blender to push model quality further.</p>
+                </div>
+                <div class="working-on-card">
+                    <h3>🦴 3D Rigging</h3>
+                    <p>Learning rigging and skinning to bring models like the Centipede Kagune to life.</p>
+                </div>
+                <div class="working-on-card">
+                    <h3>🚀 Open Abyss Projects</h3>
+                    <p>Collaborating with the Open Abyss team on several upcoming Roblox games.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            
-            <!-- New Work Section -->
+            <h2 class="section-title">Portfolio</h2>
+
+            <!-- Recent Work (empty — new work coming soon) -->
             <div class="work-category">
                 <h3 class="category-title">Recent Work</h3>
-                <h3 class="category-subtitle">Click on any image to view it in full size</h3>
-                <!-- Updated: Only 4 items in Recent Work -->
+                <p class="category-subtitle">New work coming soon</p>
+            </div>
+
+            <!-- Previous Work -->
+            <div class="work-category">
+                <h3 class="category-title">Previous Work</h3>
+                <p class="category-subtitle">Click any image to view it full size</p>
                 <div class="work-grid">
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="G0EBK6PbkAAT7Kd.jpg" alt="Character Model">
+                            <img src="G0EBK6PbkAAT7Kd.jpg" alt="Jinx's Minigun">
                         </div>
                         <div class="work-content">
                             <h4>Jinx's Minigun</h4>
@@ -155,55 +253,47 @@
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GzNe65wbMAA_s5N.png" alt="Model Asset">
+                            <img src="GzNe65wbMAA_s5N.png" alt="Chest Model">
                         </div>
                         <div class="work-content">
                             <h4>Chest</h4>
-                            <p>Chest model I made after getting back into Clash Royale.</p>
+                            <p>Chest model inspired by getting back into Clash Royale.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GtyWOJ7bcAAMqd5.jpg" alt="Character Design">
+                            <img src="GtyWOJ7bcAAMqd5.jpg" alt="Custom Wings">
                         </div>
                         <div class="work-content">
                             <h4>Custom Wings</h4>
-                            <p>Wouldn't exactly call them wings but they are wings.</p>
+                            <p>Wouldn't exactly call them wings but they're wings.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="Gwkca8pbIAAaP77.jpg" alt="Model Asset">
+                            <img src="Gwkca8pbIAAaP77.jpg" alt="Texture Painting WIP">
                         </div>
                         <div class="work-content">
                             <h4>Texture Painting WIP</h4>
                             <p>Learning texture painting in Blender.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Old Work Section -->
-            <div class="work-category">
-                <h3 class="category-title">Previous Work</h3>
-                <h3 class="category-subtitle">Click on any image to view it in full size</h3>
-                <div class="work-grid">
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="pistol.png" alt="Custom Pistol">
+                            <img src="pistol.png" alt="Pistol">
                         </div>
                         <div class="work-content">
                             <h4>Pistol</h4>
-                            <p>It isn't a specific one i just made a random looking pistol.</p>
+                            <p>Not based on anything specific — just a random pistol design.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="trident.png" alt="Mythical Trident">
+                            <img src="trident.png" alt="Trident">
                         </div>
                         <div class="work-content">
                             <h4>Trident</h4>
-                            <p>Trident I made for a commission.</p>
+                            <p>Made for a commission.</p>
                         </div>
                     </div>
                     <div class="work-item">
@@ -217,79 +307,79 @@
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="coilhead.png" alt="Coilhead Model">
+                            <img src="coilhead.png" alt="Coilhead">
                         </div>
                         <div class="work-content">
                             <h4>Coilhead Model</h4>
-                            <p>Don't look at its feet, it will probably kill you.</p>
+                            <p>Don't look at its feet — it'll probably kill you.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="Gt1aqusWMAARVHf.jpg" alt="Model Asset">
+                            <img src="Gt1aqusWMAARVHf.jpg" alt="Angel Wings">
                         </div>
                         <div class="work-content">
-                            <h4>Wings</h4>
-                            <p>3 levels of Angel Wings</p>
+                            <h4>Angel Wings</h4>
+                            <p>3 levels of Angel Wings.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="Machine.webp" alt="Pistol Model">
+                            <img src="Machine.webp" alt="Mech">
                         </div>
                         <div class="work-content">
                             <h4>Mech?</h4>
-                            <p>This used to be an ice cream truck... it had other plans however.</p>
+                            <p>This used to be an ice cream truck — it had other plans.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GstfpnJbIAIl0GD.jpg" alt="Game Asset">
+                            <img src="GstfpnJbIAIl0GD.jpg" alt="Centipede Kagune">
                         </div>
                         <div class="work-content">
                             <h4>Centipede Kagune</h4>
-                            <p>Still wanna rig this someday but its a work in progress.</p>
+                            <p>Still want to rig this someday — work in progress.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="image.webp" alt="Model Asset">
+                            <img src="image.webp" alt="Jinx's Hand Grenade">
                         </div>
                         <div class="work-content">
                             <h4>Jinx's Hand Grenade</h4>
-                            <p>Jinx's Hand Grenade from Arcane/League of Legends.</p>
+                            <p>From Arcane / League of Legends.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="Gdwe-BIbUAAujiQ.webp" alt="Environment Asset">
+                            <img src="Gdwe-BIbUAAujiQ.webp" alt="Donut">
                         </div>
                         <div class="work-content">
                             <h4>Donut</h4>
-                            <p>Never saw the donut tutorial but was confident enough to make it myself.</p>
+                            <p>Never watched the tutorial — made it myself anyway.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GjxCzxdaYAApxWC.png" alt="Character Model">
+                            <img src="GjxCzxdaYAApxWC.png" alt="Sea Urchin">
                         </div>
                         <div class="work-content">
                             <h4>Sea Urchin</h4>
-                            <p>I would personally not touch it.</p>
+                            <p>Would not recommend touching it.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GkxzEUQaoAI-9_h.png" alt="Game Asset">
+                            <img src="GkxzEUQaoAI-9_h.png" alt="Turret">
                         </div>
                         <div class="work-content">
                             <h4>Turret</h4>
-                            <p>Basic Turret Model I made using a crate.</p>
+                            <p>Basic turret built from a crate.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GkxzPw9aoAAKcyh.png" alt="Character Model">
+                            <img src="GkxzPw9aoAAKcyh.png" alt="Man Fan">
                         </div>
                         <div class="work-content">
                             <h4>Man Fan</h4>
@@ -298,56 +388,56 @@
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GnFZxiDbgAMYz3P.png" alt="Game Asset">
+                            <img src="GnFZxiDbgAMYz3P.png" alt="Patrick Star">
                         </div>
                         <div class="work-content">
                             <h4>Patrick Star</h4>
-                            <p>Lowkey didn't spend much time on this as you can tell.</p>
+                            <p>Lowkey didn't spend much time on this, as you can tell.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="Gp2JKQ0aYAIFdTS.png" alt="Character Design">
+                            <img src="Gp2JKQ0aYAIFdTS.png" alt="Anime Style Cloud">
                         </div>
                         <div class="work-content">
                             <h4>Anime Style Cloud</h4>
-                            <p>Using a cloud model and lighting here is an anime style cloud.</p>
+                            <p>Cloud model with stylized anime lighting.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="Gp2KHRybAAAMLXQ.png" alt="Model Asset">
+                            <img src="Gp2KHRybAAAMLXQ.png" alt="R6 Muscles">
                         </div>
                         <div class="work-content">
                             <h4>R6 Muscles</h4>
-                            <p>Rough sculpt of muscles with no anatomy knowledge.</p>
+                            <p>Rough muscle sculpt — no anatomy knowledge required apparently.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="Gppzqs9bEAECoYm.png" alt="Character Model">
+                            <img src="Gppzqs9bEAECoYm.png" alt="Kami's Lookout">
                         </div>
                         <div class="work-content">
                             <h4>Kami's Lookout</h4>
-                            <p>Kami's Lookout from DBZ.</p>
+                            <p>Kami's Lookout from Dragon Ball Z.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GpU_dQJbcAAzQK0.png" alt="Game Asset">
+                            <img src="GpU_dQJbcAAzQK0.png" alt="Chicken Jockey">
                         </div>
                         <div class="work-content">
                             <h4>CHICKEN JOCKEY!</h4>
-                            <p>I was bored one day alright...</p>
+                            <p>Was bored one day, alright?</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="GRiUlCub0AAgAaH.webp" alt="Character Model">
+                            <img src="GRiUlCub0AAgAaH.webp" alt="Enderman">
                         </div>
                         <div class="work-content">
                             <h4>Enderman</h4>
-                            <p>You can barely see him lol</p>
+                            <p>You can barely see him lol.</p>
                         </div>
                     </div>
                     <div class="work-item">
@@ -356,29 +446,21 @@
                         </div>
                         <div class="work-content">
                             <h4>Pet Models</h4>
-                            <p>Basic Pet Models</p>
+                            <p>Basic pet models.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-image">
-                            <img src="Gjw-SCZbwAAZoOe.png" alt="Weapon Model">
+                            <img src="Gjw-SCZbwAAZoOe.png" alt="Turtle Shell Shield">
                         </div>
                         <div class="work-content">
                             <h4>Turtle Shell Shield</h4>
-                            <p>Turtle shell I made for a friend.</p>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image">
-                            <img src="Shu Kagune.png" alt="Shuu's Kagune">
-                        </div>
-                        <div class="work-content">
-                            <h4>Shuu's Kagune</h4>
-                            <p>Recreation of Shuu's kagune from Tokyo Ghoul.</p>
+                            <p>Made for a friend.</p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -389,13 +471,11 @@
             <div class="games-grid">
                 <div class="game-card">
                     <div class="game-image">
-                        <img src="growacircle.png" alt="Grow a Circle" onerror="console.log('Grow a Circle image failed to load'); this.style.border='2px solid red';">
+                        <img src="growacircle.png" alt="Grow a Circle">
                     </div>
                     <div class="game-content">
                         <h3>Grow a Circle</h3>
-                        <p>A terrible version of Agario that I will eventually remaster to actually have some replayability.
-                            Or you know... Actually make it playable.
-                        </p>
+                        <p>A terrible version of Agario that I'll eventually remaster to actually have some replayability. Or you know, actually make it playable.</p>
                         <a href="https://www.roblox.com/games/115027898749081/Update-1-Grow-a-Circle" target="_blank" class="btn btn-primary">Play Now</a>
                     </div>
                 </div>
@@ -406,7 +486,8 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Contacts</h2>
+            <h2 class="section-title">Contact</h2>
+            <p class="contact-subtitle">Available for commissions and collaborations</p>
             <div class="social-links">
                 <a href="https://www.roblox.com/users/4157941483/profile" target="_blank" class="social-link">
                     <img src="Roblox_Logo.svg.png" alt="Roblox">
@@ -418,7 +499,7 @@
                 </a>
                 <div class="social-link discord-info">
                     <i class="fab fa-discord"></i>
-                    <span>User is _nv</span>
+                    <span>Discord: _nv</span>
                 </div>
             </div>
         </div>
@@ -433,6 +514,8 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#working-on">Working On</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#games">Games</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -459,7 +542,7 @@
                             <i class="fab fa-x-twitter"></i>
                             <span>X (Twitter)</span>
                         </a>
-                        <div class="footer-social-link discord-info">
+                        <div class="footer-social-link">
                             <i class="fab fa-discord"></i>
                             <span>_nv</span>
                         </div>
@@ -467,8 +550,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Available for commissions • Game Designer & 3D Artist</p>
-                
+                <p>Available for commissions &bull; Game Designer &amp; 3D Artist</p>
             </div>
         </div>
     </footer>
@@ -484,25 +566,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        function switchTab(tabId, button) {
-            console.log('Switching to tab:', tabId);
-            
-            // Remove active class from all buttons and panels
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-            
-            // Add active class to clicked button and corresponding panel
-            button.classList.add('active');
-            const targetPanel = document.getElementById(tabId);
-            if (targetPanel) {
-                targetPanel.classList.add('active');
-                console.log('Activated panel:', tabId);
-            } else {
-                console.log('Panel not found:', tabId);
-            }
-        }
-    </script>
 </body>
-</html> 
-</html> 
+</html>
