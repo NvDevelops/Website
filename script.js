@@ -76,9 +76,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Scroll-triggered fade-up animations
 // ==========================================
 const animateObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            // Slight stagger per card
             const delay = (entry.target.dataset.index || 0) * 80;
             setTimeout(() => {
                 entry.target.classList.add('visible');
@@ -88,35 +87,16 @@ const animateObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 
-document.querySelectorAll('.skill-card, .working-on-card, .work-item, .game-card, .info-card').forEach((el, i) => {
-    el.dataset.index = i % 6; // reset stagger every 6 items
+document.querySelectorAll('.now-card, .work-item, .tg-card').forEach((el, i) => {
+    el.dataset.index = i % 6;
     animateObserver.observe(el);
-});
-
-// ==========================================
-// Team Tabs
-// ==========================================
-const tabButtons = document.querySelectorAll('.tab-button');
-const tabPanels = document.querySelectorAll('.tab-panel');
-
-tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const target = button.dataset.tab;
-
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabPanels.forEach(panel => panel.classList.remove('active'));
-
-        button.classList.add('active');
-        const targetPanel = document.getElementById(target);
-        if (targetPanel) targetPanel.classList.add('active');
-    });
 });
 
 // ==========================================
 // Abyss Icon Rotation (requestAnimationFrame)
 // ==========================================
-const abyssIcon = document.querySelector('.abyss-icon');
-if (abyssIcon) {
+const abyssIcons = document.querySelectorAll('.abyss-icon');
+abyssIcons.forEach(icon => {
     let rotation = 0;
     let lastTime = 0;
 
@@ -124,12 +104,12 @@ if (abyssIcon) {
         const delta = timestamp - lastTime;
         lastTime = timestamp;
         rotation = (rotation + delta * 0.12) % 360;
-        abyssIcon.style.transform = `rotate(${rotation}deg)`;
+        icon.style.transform = `rotate(${rotation}deg)`;
         requestAnimationFrame(rotateIcon);
     }
 
     requestAnimationFrame(rotateIcon);
-}
+});
 
 // ==========================================
 // Button Ripple Effect
@@ -163,19 +143,6 @@ document.querySelectorAll('img').forEach(img => {
         });
     }
 });
-
-// ==========================================
-// Hero parallax (subtle)
-// ==========================================
-const heroBg = document.querySelector('.hero-background');
-if (heroBg) {
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        if (scrolled < window.innerHeight) {
-            heroBg.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
-    }, { passive: true });
-}
 
 // ==========================================
 // Lightbox
@@ -219,12 +186,12 @@ if (heroBg) {
         requestAnimationFrame(() => { imgEl.src = ''; });
     }
 
-    // Open on portfolio/game image click
+    // Open on portfolio image click
     document.addEventListener('click', (e) => {
-        const img = e.target.closest('.work-image img, .game-image img');
+        const img = e.target.closest('.work-image img');
         if (img) {
-            const card = img.closest('.work-item, .game-card');
-            const title = card?.querySelector('h4, h3')?.textContent || '';
+            const card = img.closest('.work-item');
+            const title = card?.querySelector('h4')?.textContent || '';
             open(img.src, img.alt, title);
         }
     });
