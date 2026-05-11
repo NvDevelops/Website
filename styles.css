@@ -260,13 +260,21 @@ img { display: block; max-width: 100%; }
 
 .ticker-track {
     display: flex;
-    gap: 2rem;
     white-space: nowrap;
-    animation: tickerScroll 22s linear infinite;
+    animation: tickerScroll 25s linear infinite;
     width: max-content;
+    will-change: transform;
 }
 
-.ticker-track span {
+.ticker-set {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-right: 2rem;
+    flex-shrink: 0;
+}
+
+.ticker-set span {
     font-family: 'Syne', sans-serif;
     font-size: 0.7rem;
     font-weight: 700;
@@ -276,15 +284,15 @@ img { display: block; max-width: 100%; }
     flex-shrink: 0;
 }
 
-.ticker-track .tick-dot {
+.ticker-set .tick-dot {
     color: var(--cyan);
     letter-spacing: 0;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 @keyframes tickerScroll {
     from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    to   { transform: translateX(var(--ticker-dist, -50%)); }
 }
 
 /* ==========================================
