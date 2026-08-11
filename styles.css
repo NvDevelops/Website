@@ -518,46 +518,9 @@ img { display: block; max-width: 100%; }
 .group-links a:hover { color: var(--cream); }
 
 /* ==========================================
-   Now (What I'm Working On)
+   Now section removed
    ========================================== */
-.now-section {
-    padding: 5rem 0;
-    background: var(--surface);
-}
 
-.now-section .section-title { margin-bottom: 2rem; }
-
-.now-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 0;
-}
-
-/* Left-border-only card — breaks the AI all-border card pattern */
-.now-card {
-    padding: 1.5rem 1.5rem 1.5rem 1.25rem;
-    border-left: 2px solid var(--purple-border);
-    border-bottom: 1px solid var(--border);
-    background: transparent;
-    transition: border-left-color 0.2s ease, background 0.2s ease;
-    opacity: 0;
-    transform: translateY(18px);
-}
-
-.now-card:last-child { border-bottom: none; }
-
-.now-card.visible {
-    opacity: 1;
-    transform: none;
-    transition: opacity 0.4s ease, transform 0.4s ease, border-left-color 0.2s ease;
-}
-
-.now-card:hover {
-    border-left-color: var(--purple);
-    background: var(--purple-dim);
-}
-
-.now-card h3 {
     font-family: 'Syne', sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
