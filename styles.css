@@ -43,18 +43,6 @@ body {
     font-size: 16px;
 }
 
-/* Subtle grain texture */
-body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.022;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-}
-
 .container {
     max-width: 1160px;
     margin: 0 auto;
@@ -248,54 +236,6 @@ img { display: block; max-width: 100%; }
 }
 
 /* ==========================================
-   Ticker
-   ========================================== */
-.ticker {
-    overflow: hidden;
-    border-top: 1px solid var(--cyan-border);
-    border-bottom: 1px solid var(--cyan-border);
-    padding: 0.75rem 0;
-    background: var(--cyan-dim);
-}
-
-.ticker-track {
-    display: flex;
-    white-space: nowrap;
-    animation: tickerScroll 25s linear infinite;
-    width: max-content;
-    will-change: transform;
-}
-
-.ticker-set {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding-right: 2rem;
-    flex-shrink: 0;
-}
-
-.ticker-set span {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--cream);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    flex-shrink: 0;
-}
-
-.ticker-set .tick-dot {
-    color: var(--cyan);
-    letter-spacing: 0;
-    font-weight: 300;
-}
-
-@keyframes tickerScroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(var(--ticker-dist, -50%)); }
-}
-
-/* ==========================================
    Buttons
    ========================================== */
 .btn {
@@ -307,8 +247,6 @@ img { display: block; max-width: 100%; }
     font-weight: 700;
     border-radius: 6px;
     transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-    position: relative;
-    overflow: hidden;
     cursor: pointer;
     border: none;
     letter-spacing: 0.2px;
@@ -335,17 +273,6 @@ img { display: block; max-width: 100%; }
     background: rgba(255, 255, 255, 0.05);
     transform: translateY(-2px);
 }
-
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(0);
-    animation: rippleAnim 0.5s linear;
-    pointer-events: none;
-}
-
-@keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
 
 /* ==========================================
    Section Title
@@ -540,6 +467,26 @@ img { display: block; max-width: 100%; }
    ========================================== */
 .portfolio { padding: 6rem 0 5rem; }
 
+.section-kicker {
+    color: var(--cyan);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    margin-bottom: 0.85rem;
+    text-transform: uppercase;
+}
+
+.portfolio .section-title { margin-bottom: 1rem; }
+
+.portfolio-intro {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin: 0 0 3.5rem;
+    max-width: 590px;
+}
+
 .work-category { margin-bottom: 3.5rem; }
 
 .category-label {
@@ -558,19 +505,6 @@ img { display: block; max-width: 100%; }
     margin-top: -0.9rem;
     margin-bottom: 1.25rem;
     opacity: 0.55;
-}
-
-.coming-soon-block {
-    padding: 2.5rem;
-    border: 1px dashed rgba(255, 255, 255, 0.07);
-    border-radius: 6px;
-    text-align: center;
-}
-
-.coming-soon-block p {
-    color: var(--muted);
-    font-size: 0.875rem;
-    margin: 0;
 }
 
 .work-grid {

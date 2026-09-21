@@ -93,68 +93,6 @@ document.querySelectorAll('.now-card, .work-item, .tg-card').forEach((el, i) => 
 });
 
 // ==========================================
-// Infinite Ticker
-// ==========================================
-(function initTicker() {
-    const track = document.querySelector('.ticker-track');
-    if (!track) return;
-    const firstSet = track.querySelector('.ticker-set');
-    if (!firstSet) return;
-
-    // Clone sets until the track is at least 3× the viewport wide,
-    // guaranteeing no blank gap at any screen size or resolution.
-    while (track.scrollWidth < window.innerWidth * 3) {
-        track.appendChild(firstSet.cloneNode(true));
-    }
-
-    // Animate by exactly one set's rendered width so the loop is pixel-perfect.
-    const setWidth = firstSet.offsetWidth + 32; // +32px matches the 2rem padding-right gap
-    document.documentElement.style.setProperty('--ticker-dist', `-${setWidth}px`);
-
-    // Consistent speed regardless of content width: 90px/s
-    const speed = 90;
-    track.style.animationDuration = `${(setWidth / speed).toFixed(2)}s`;
-})();
-
-// ==========================================
-// Abyss Icon Rotation (requestAnimationFrame)
-// ==========================================
-const abyssIcons = document.querySelectorAll('.abyss-icon');
-abyssIcons.forEach(icon => {
-    let rotation = 0;
-    let lastTime = 0;
-
-    function rotateIcon(timestamp) {
-        const delta = timestamp - lastTime;
-        lastTime = timestamp;
-        rotation = (rotation + delta * 0.12) % 360;
-        icon.style.transform = `rotate(${rotation}deg)`;
-        requestAnimationFrame(rotateIcon);
-    }
-
-    requestAnimationFrame(rotateIcon);
-});
-
-// ==========================================
-// Button Ripple Effect
-// ==========================================
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-
-        ripple.className = 'ripple';
-        ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
-        this.appendChild(ripple);
-
-        ripple.addEventListener('animationend', () => ripple.remove());
-    });
-});
-
-// ==========================================
 // Image lazy-load fade-in
 // ==========================================
 document.querySelectorAll('img').forEach(img => {
