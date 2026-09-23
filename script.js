@@ -72,30 +72,91 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ==========================================
-// Scroll-triggered fade-up animations
-// ==========================================
-const animateObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            const delay = (entry.target.dataset.index || 0) * 80;
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, delay);
-            animateObserver.unobserve(entry.target);
+// Put each piece of work in the kind of portfolio section it belongs in.
+(function organizePortfolio() {
+    const portfolio = document.querySelector('#portfolio');
+    const host = portfolio?.querySelector('.portfolio-groups');
+    if (!portfolio || !host) return;
+
+    const categories = [
+        {
+            title: 'Maps & environment assets',
+            work: ['Theme Maps', 'Chained Portal', 'Road Kit', 'Urban Prop Kit', 'Anime Style Cloud', "Kami's Lookout"]
+        },
+        {
+            title: 'Weapons & combat assets',
+            work: ['Revolver', 'Sniper Set', 'Pistol', 'Trident', 'Turret']
+        },
+        {
+            title: 'Brainrots, pets & UGC',
+            work: ['Brainrot Asset Collection', 'Pet Models: Then and Now', 'Jester Hat Variants', 'Custom Wings', 'Angel Wings', 'R6 Muscles']
+        },
+        {
+            title: 'Game-inspired models',
+            work: ["Jinx's Minigun", 'Chest', "Shuu's Kagune", 'Coilhead Model', 'Centipede Kagune', "Jinx's Hand Grenade", 'Patrick Star', 'CHICKEN JOCKEY!', 'Enderman']
+        },
+        {
+            title: 'Miscellaneous & experiments',
+            work: ['Axe', 'Turtle Shell Shield', 'Texture Painting WIP', 'Mech?', 'Donut', 'Sea Urchin', 'Man Fan']
+        }
+    ];
+
+    const allCards = Array.from(portfolio.querySelectorAll('.collection-card, .work-item'));
+    const getTitle = (card) => card.dataset.title || card.querySelector('h3, h4')?.textContent || '';
+
+    categories.forEach((category) => {
+        const section = document.createElement('section');
+        section.className = 'work-category portfolio-category';
+
+        const label = document.createElement('p');
+        label.className = 'category-label';
+        label.textContent = category.title;
+
+        const collectionGrid = document.createElement('div');
+        collectionGrid.className = 'collection-grid';
+        const workGrid = document.createElement('div');
+        workGrid.className = 'work-grid';
+
+        category.work.forEach((title) => {
+            const card = allCards.find((item) => getTitle(item) === title);
+            if (card) (card.classList.contains('collection-card') ? collectionGrid : workGrid).append(card);
+        });
+
+        section.append(label);
+        if (collectionGrid.childElementCount) section.append(collectionGrid);
+        if (workGrid.childElementCount) section.append(workGrid);
+        host.append(section);
+    });
+
+    portfolio.querySelectorAll('.featured-work, .work-category:not(.portfolio-category)').forEach((section) => section.remove());
+})();
+
+// The individual asset cards are older archive work, rather than a new batch.
+document.querySelectorAll('.work-item .work-content').forEach((content) => {
+    const archiveTag = document.createElement('span');
+    archiveTag.className = 'archive-tag';
+    archiveTag.textContent = '2025 or earlier';
+    content.prepend(archiveTag);
+});
+
+// Make the older gallery work with a mouse, touch, or keyboard.
+document.querySelectorAll('.work-item').forEach((card) => {
+    const title = card.querySelector('h4')?.textContent || 'portfolio item';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `Open ${title}`);
+    card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
         }
     });
-}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-document.querySelectorAll('.now-card, .work-item, .tg-card').forEach((el, i) => {
-    el.dataset.index = i % 6;
-    animateObserver.observe(el);
 });
 
 // ==========================================
 // Image lazy-load fade-in
 // ==========================================
-document.querySelectorAll('img').forEach(img => {
+document.querySelectorAll('img:not(.lightbox-image)').forEach(img => {
     if (img.complete && img.naturalWidth > 0) {
         img.classList.add('loaded');
     } else {
@@ -117,9 +178,13 @@ document.querySelectorAll('img').forEach(img => {
     const imgEl = lightbox.querySelector('.lightbox-image');
     const captionEl = lightbox.querySelector('.lightbox-caption');
     const closeBtn = lightbox.querySelector('.lightbox-close');
+    const prevBtn = lightbox.querySelector('.lightbox-prev');
+    const nextBtn = lightbox.querySelector('.lightbox-next');
 
     let scale = 1, originX = 0, originY = 0;
     let isPanning = false, startX = 0, startY = 0;
+    let gallery = [];
+    let galleryIndex = 0;
 
     function applyTransform() {
         imgEl.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
@@ -131,11 +196,28 @@ document.querySelectorAll('img').forEach(img => {
         applyTransform();
     }
 
-    function open(src, alt, caption) {
+    function renderGalleryImage() {
+        const src = gallery[galleryIndex];
+        const hasMultipleImages = gallery.length > 1;
         resetTransform();
+        imgEl.style.opacity = '1';
+        imgEl.style.filter = 'none';
+        imgEl.style.mixBlendMode = 'normal';
         imgEl.src = src;
-        imgEl.alt = alt || 'Preview';
-        captionEl.textContent = caption || '';
+        imgEl.alt = lightbox.dataset.title || 'Preview';
+        captionEl.textContent = hasMultipleImages
+            ? `${lightbox.dataset.title} · ${galleryIndex + 1} of ${gallery.length}`
+            : lightbox.dataset.title || '';
+        prevBtn.hidden = !hasMultipleImages;
+        nextBtn.hidden = !hasMultipleImages;
+    }
+
+    function open(images, title) {
+        gallery = images;
+        galleryIndex = 0;
+        lightbox.dataset.title = title || '';
+        resetTransform();
+        renderGalleryImage();
         lightbox.classList.add('is-visible');
         lightbox.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -150,18 +232,34 @@ document.querySelectorAll('img').forEach(img => {
 
     // Open on portfolio image click
     document.addEventListener('click', (e) => {
-        const img = e.target.closest('.work-image img');
-        if (img) {
-            const card = img.closest('.work-item');
-            const title = card?.querySelector('h4')?.textContent || '';
-            open(img.src, img.alt, title);
+        const collection = e.target.closest('.collection-card');
+        if (collection) {
+            open(collection.dataset.gallery.split('|'), collection.dataset.title);
+            return;
+        }
+
+        const card = e.target.closest('.work-item');
+        if (card) {
+            const img = card.querySelector('.work-image img');
+            const title = card.querySelector('h4')?.textContent || '';
+            if (img) open([img.src], title);
         }
     });
 
     backdrop.addEventListener('click', close);
     closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', () => {
+        galleryIndex = (galleryIndex - 1 + gallery.length) % gallery.length;
+        renderGalleryImage();
+    });
+    nextBtn.addEventListener('click', () => {
+        galleryIndex = (galleryIndex + 1) % gallery.length;
+        renderGalleryImage();
+    });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft' && lightbox.classList.contains('is-visible') && gallery.length > 1) prevBtn.click();
+        if (e.key === 'ArrowRight' && lightbox.classList.contains('is-visible') && gallery.length > 1) nextBtn.click();
     });
 
     imgEl.addEventListener('dragstart', (e) => e.preventDefault());
