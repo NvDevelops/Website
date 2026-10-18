@@ -4,349 +4,362 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nv &amp; Co.</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Nv makes low-poly 3D models, maps, and props for Roblox games.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">
-                <img src="Nv &amp; Co. Logo.webp" alt="" class="logo-mark" aria-hidden="true">
+    <header class="nav">
+        <div class="wrap nav-inner">
+            <a href="#top" class="logo">
+                <img src="Nv &amp; Co. Logo.webp" alt="" width="26" height="26">
                 <span><em>Nv</em> &amp; Co.</span>
             </a>
-            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#games">Games</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <button class="menu-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+            <nav class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#games">Games</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
-        <div class="hero-inner">
+    <main id="top">
+
+        <!-- top of the page. the portal is the best thing ive made so it goes first -->
+        <section class="hero wrap">
             <div class="hero-text">
-                <p class="hero-status"><span class="status-dot"></span> Nv &amp; Co. / personal work</p>
-                <h1 class="hero-title">3D Artist and Developer<br>for Roblox.</h1>
-                <p class="hero-desc">Maps, props, weapons, and weird little assets. If you have a direction, I can work with it.</p>
+                <h1>I make 3D stuff for Roblox games.</h1>
+                <p>Maps, props, weapons, pets, and whatever weird thing your game needs. Modeled in Blender, built for Studio.</p>
                 <div class="hero-actions">
-                    <a href="#portfolio" class="btn btn-primary">See my work</a>
-                    <a href="#contact" class="btn btn-ghost">Work with me</a>
+                    <a href="#work" class="btn btn-solid">See the work</a>
+                    <a href="#contact" class="btn">Get in touch</a>
                 </div>
-            </div>
-            <div class="hero-img">
-                <img src="NvNewIcon.webp" alt="Nv">
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-bio">
-                    <h2 class="section-title">What I actually make.</h2>
-                    <p>I mostly make low-poly stuff for Roblox: maps, props, weapons, character-type assets, and modular sets.</p>
-                    <p>Give me a reference or tell me what you need. I can usually figure out how to fit the work into the project pretty fast.</p>
-                    <div class="skills-slash">
-                        <span>Roblox Studio</span><em>/</em>
-                        <span>Blender</span><em>/</em>
-                        <span>3D Modeling</span><em>/</em>
-                        <span>Game Ideas</span><em>/</em>
-                        <span>UI</span>
-                    </div>
-                    <div class="exp-line">
-                        <span>Props</span>
-                        <span>Weapons</span>
-                        <span>Maps</span>
-                        <span>Game systems</span>
-                    </div>
-                    <p class="availability-note">I don't rig, hand-paint textures, or animate yet.</p>
-                </div>
-                <div class="about-groups">
-                    <p class="groups-heading">Groups</p>
-                    <div class="group-card group-card--own">
-                        <div class="group-card-top">
-                            <img src="Nv &amp; Co. Logo.webp" alt="Nv &amp; Co." class="group-icon">
-                            <span class="group-name">Nv &amp; Co.</span>
-                            <span class="group-badge own">Founder</span>
-                        </div>
-                        <p>A home for my own games, experiments, and projects.</p>
-                    </div>
-                    <div class="group-card group-card--team">
-                        <div class="group-card-top">
-                            <img src="Icon.png" alt="Open Abyss" class="abyss-icon group-icon">
-                            <span class="group-name">Open Abyss</span>
-                            <span class="group-badge team">Developer</span>
-                        </div>
-                        <p>A Roblox team I contribute to alongside other developers and artists.</p>
-                        <div class="group-links">
-                            <a href="https://www.roblox.com/communities/581063242/Open-Abyss#!/about" target="_blank">Roblox →</a>
-                            <a href="https://x.com/EnviousDevelops" target="_blank">X →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <p class="section-kicker">Portfolio</p>
-            <h2 class="section-title">Stuff I've made.</h2>
-            <p class="portfolio-intro">Mostly older work from 2025 or earlier. Click a card for a closer look.</p>
-            <div class="portfolio-groups"></div>
-
-            <div class="work-category featured-work">
-                <p class="category-label">Start here</p>
-                <p class="category-hint">Open any card to see the full set</p>
-                <div class="collection-grid">
-                    <button class="collection-card collection-card--wide" type="button" data-title="Theme Maps" data-gallery="portfolio/theme-map-forest.png|portfolio/theme-map-snow.png|portfolio/theme-map-beach.png|portfolio/theme-map-candy.png|portfolio/theme-map-desert.png|portfolio/theme-map-fantasy.png|portfolio/theme-map-space.png|portfolio/theme-map-lava.png">
-                        <div class="collection-image"><img src="portfolio/theme-map-forest.png" alt="Forest-themed Roblox map"></div>
-                        <div class="collection-content"><span class="collection-count">8 map variations</span><h3>Theme Maps</h3><p>Eight Roblox maps built around the same route layout, each with its own theme.</p></div>
-                    </button>
-                    <button class="collection-card collection-card--wide" type="button" data-title="Brainrot Asset Collection" data-gallery="portfolio/brainrots-accessories.png|portfolio/brainrots-characters-a.png|portfolio/brainrots-characters-b.png|portfolio/brainrots-spiders.png">
-                        <div class="collection-image"><img src="portfolio/brainrots-characters-a.png" alt="A collection of Brainrot character models"></div>
-                        <div class="collection-content"><span class="collection-count">4 collections</span><h3>Brainrot Asset Collection</h3><p>Character, accessory, and spider models made as a larger Brainrot set.</p></div>
-                    </button>
-                    <button class="collection-card" type="button" data-title="Chained Portal" data-gallery="portfolio/portal.png">
-                        <div class="collection-image"><img src="portfolio/portal.png" alt="A chained glowing portal under a moonlit sky"></div>
-                        <div class="collection-content"><span class="collection-count">Environment piece</span><h3>Chained Portal</h3><p>A moonlit portal scene built around a heavy stone arch and glowing center.</p></div>
-                    </button>
-                    <button class="collection-card collection-card--wide collection-card--growth" type="button" data-title="Pet Models: Then and Now" data-gallery="portfolio/pets.png|Screenshot 2025-06-22 113130.png">
-                        <div class="collection-image collection-image--comparison">
-                            <div class="pet-preview pet-preview--then"><img src="Screenshot 2025-06-22 113130.png" alt="Earlier pet models"><span>Then</span></div>
-                            <div class="pet-preview pet-preview--now"><img src="portfolio/pets.png" alt="Newer cat, dog, and bunny pet models"><span>Now</span></div>
-                        </div>
-                        <div class="collection-content"><span class="collection-count">Progress over about a year</span><h3>Pet Models: Then and Now</h3><p>The older pets are where I started. The newer set shows how much more seriously I have taken shape, expression, and a consistent style.</p></div>
-                    </button>
-                    <button class="collection-card" type="button" data-title="Road Kit" data-gallery="portfolio/road-kit.png">
-                        <div class="collection-image"><img src="portfolio/road-kit.png" alt="A modular road and intersection kit"></div>
-                        <div class="collection-content"><span class="collection-count">Modular kit</span><h3>Road Kit</h3><p>Road segments, turns, intersections, and markings made to build a city quickly.</p></div>
-                    </button>
-                    <button class="collection-card" type="button" data-title="Jester Hat Variants" data-gallery="portfolio/jester-hats.png">
-                        <div class="collection-image"><img src="portfolio/jester-hats.png" alt="Jester hats in multiple color variants"></div>
-                        <div class="collection-content"><span class="collection-count">Accessory set</span><h3>Jester Hat Variants</h3><p>A set of jester hats shown across several color combinations.</p></div>
-                    </button>
-                    <button class="collection-card" type="button" data-title="Urban Prop Kit" data-gallery="portfolio/urban-prop-kit.png">
-                        <div class="collection-image"><img src="portfolio/urban-prop-kit.png" alt="A collection of modular urban props"></div>
-                        <div class="collection-content"><span class="collection-count">Modular kit</span><h3>Urban Prop Kit</h3><p>Street, gym, room, and environmental pieces made to fill out a larger space.</p></div>
-                    </button>
-                    <button class="collection-card" type="button" data-title="Axe" data-gallery="portfolio/axe.png">
-                        <div class="collection-image"><img src="portfolio/axe.png" alt="Low-poly axe model"></div>
-                        <div class="collection-content"><span class="collection-count">Weapon model</span><h3>Axe</h3></div>
-                    </button>
-                    <button class="collection-card" type="button" data-title="Revolver" data-gallery="portfolio/revolver.png">
-                        <div class="collection-image"><img src="portfolio/revolver.png" alt="Low-poly revolver model"></div>
-                        <div class="collection-content"><span class="collection-count">Weapon model</span><h3>Revolver</h3></div>
-                    </button>
-                    <button class="collection-card" type="button" data-title="Sniper Set" data-gallery="portfolio/sniper-set.png">
-                        <div class="collection-image"><img src="portfolio/sniper-set.png" alt="A set of sniper rifle models"></div>
-                        <div class="collection-content"><span class="collection-count">Weapon model</span><h3>Sniper Set</h3></div>
-                    </button>
-                </div>
-            </div>
-
-            <div class="work-category">
-                <p class="category-label">Earlier work</p>
-                <p class="earlier-work-copy">Older models, experiments, commissions, and studies. They show the range of things I have tried while learning.</p>
-                <p class="category-hint">Open any card to view it full size</p>
-                <div class="work-grid">
-                    <div class="work-item">
-                        <div class="work-image"><img src="G0EBK6PbkAAT7Kd.jpg" alt="Jinx's Minigun"></div>
-                        <div class="work-content"><h4>Jinx's Minigun</h4><p>Model of Jinx's Minigun from League of Legends.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GzNe65wbMAA_s5N.png" alt="Chest Model"></div>
-                        <div class="work-content"><h4>Chest</h4><p>Chest model inspired by getting back into Clash Royale.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GtyWOJ7bcAAMqd5.jpg" alt="Custom Wings"></div>
-                        <div class="work-content"><h4>Custom Wings</h4><p>Wouldn't exactly call them wings but they're wings.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Gwkca8pbIAAaP77.jpg" alt="Texture Painting WIP"></div>
-                        <div class="work-content"><h4>Texture Painting WIP</h4><p>Learning texture painting in Blender.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="pistol.png" alt="Pistol"></div>
-                        <div class="work-content"><h4>Pistol</h4><p>Not based on anything specific. Just a random pistol design.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="trident.png" alt="Trident"></div>
-                        <div class="work-content"><h4>Trident</h4><p>Made for a commission.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Shu Kagune.png" alt="Shuu's Kagune"></div>
-                        <div class="work-content"><h4>Shuu's Kagune</h4><p>Recreation of Shuu's kagune from Tokyo Ghoul.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="coilhead.png" alt="Coilhead"></div>
-                        <div class="work-content"><h4>Coilhead Model</h4><p>Don't look at its feet. It'll probably kill you.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Gt1aqusWMAARVHf.jpg" alt="Angel Wings"></div>
-                        <div class="work-content"><h4>Angel Wings</h4><p>3 levels of Angel Wings.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Machine.webp" alt="Mech"></div>
-                        <div class="work-content"><h4>Mech?</h4><p>This used to be an ice cream truck. It had other plans.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GstfpnJbIAIl0GD.jpg" alt="Centipede Kagune"></div>
-                        <div class="work-content"><h4>Centipede Kagune</h4><p>Still want to rig this someday. Work in progress.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="image.webp" alt="Jinx's Hand Grenade"></div>
-                        <div class="work-content"><h4>Jinx's Hand Grenade</h4><p>From Arcane / League of Legends.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Gdwe-BIbUAAujiQ.webp" alt="Donut"></div>
-                        <div class="work-content"><h4>Donut</h4><p>Never watched the tutorial. Made it myself anyway.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GjxCzxdaYAApxWC.png" alt="Sea Urchin"></div>
-                        <div class="work-content"><h4>Sea Urchin</h4><p>Would not recommend touching it.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GkxzEUQaoAI-9_h.png" alt="Turret"></div>
-                        <div class="work-content"><h4>Turret</h4><p>Basic turret built from a crate.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GkxzPw9aoAAKcyh.png" alt="Man Fan"></div>
-                        <div class="work-content"><h4>Man Fan</h4><p>Man, as a man I really am a fan of the man fan.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GnFZxiDbgAMYz3P.png" alt="Patrick Star"></div>
-                        <div class="work-content"><h4>Patrick Star</h4><p>Lowkey didn't spend much time on this, as you can tell.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Gp2JKQ0aYAIFdTS.png" alt="Anime Style Cloud"></div>
-                        <div class="work-content"><h4>Anime Style Cloud</h4><p>Cloud model with stylized anime lighting.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Gp2KHRybAAAMLXQ.png" alt="R6 Muscles"></div>
-                        <div class="work-content"><h4>R6 Muscles</h4><p>Rough muscle sculpt. No anatomy knowledge required, apparently.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Gppzqs9bEAECoYm.png" alt="Kami's Lookout"></div>
-                        <div class="work-content"><h4>Kami's Lookout</h4><p>Kami's Lookout from Dragon Ball Z.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GpU_dQJbcAAzQK0.png" alt="Chicken Jockey"></div>
-                        <div class="work-content"><h4>CHICKEN JOCKEY!</h4><p>Was bored one day, alright?</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="GRiUlCub0AAgAaH.webp" alt="Enderman"></div>
-                        <div class="work-content"><h4>Enderman</h4><p>You can barely see him lol.</p></div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-image"><img src="Gjw-SCZbwAAZoOe.png" alt="Turtle Shell Shield"></div>
-                        <div class="work-content"><h4>Turtle Shell Shield</h4><p>Made for a friend.</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Games -->
-    <section id="games" class="games">
-        <div class="container">
-            <p class="section-kicker">Games</p>
-            <h2 class="section-title">Games I have<br>worked on.</h2>
-            <p class="games-intro">Find the Kats is my own project. For the other games, I handled the 3D modeling and built the assets used in them.</p>
-            <p class="games-stats-note">Public Roblox stats, checked September 22, 2026.</p>
-            <div class="games-grid">
-                <article class="game-card game-card--solo">
-                    <a class="game-thumbnail" href="https://www.roblox.com/games/125712869239665/Find-the-Kats" target="_blank" rel="noreferrer"><img src="https://tr.rbxcdn.com/180DAY-cd1c106ae3755a9e92327705e1a20024/512/512/Image/Png/noFilter" alt="Find the Kats Roblox thumbnail" loading="lazy"></a>
-                    <div class="game-card-content">
-                        <p class="game-role">Solo passion project</p>
-                        <h3>Find the Kats</h3>
-                        <p>My own cat-collecting Roblox game. It is not popular yet. You could call it exclusive.</p>
-                        <dl class="game-stats"><div><dt>Visits</dt><dd>126</dd></div><div><dt>Favorites</dt><dd>3</dd></div><div><dt>Genre</dt><dd>Puzzle</dd></div></dl>
-                        <a class="game-link" href="https://www.roblox.com/games/125712869239665/Find-the-Kats" target="_blank" rel="noreferrer">Play Find the Kats <span aria-hidden="true">&#8599;</span></a>
-                    </div>
-                </article>
-                <article class="game-card">
-                    <a class="game-thumbnail" href="https://www.roblox.com/games/85320160130402/Noobs-TD" target="_blank" rel="noreferrer"><img src="https://tr.rbxcdn.com/180DAY-137e767560f1a7c7518f1c87cdd5d59b/512/512/Image/Png/noFilter" alt="Noobs TD Roblox thumbnail" loading="lazy"></a>
-                    <div class="game-card-content">
-                        <p class="game-role">3D modeling</p>
-                        <h3>Noobs TD</h3>
-                        <p>I modeled the game assets for this tower-defense project.</p>
-                        <dl class="game-stats"><div><dt>Visits</dt><dd>43.2K</dd></div><div><dt>Favorites</dt><dd>2.1K</dd></div><div><dt>Genre</dt><dd>Tower Defense</dd></div></dl>
-                        <a class="game-link" href="https://www.roblox.com/games/85320160130402/Noobs-TD" target="_blank" rel="noreferrer">Play Noobs TD <span aria-hidden="true">&#8599;</span></a>
-                    </div>
-                </article>
-                <article class="game-card">
-                    <a class="game-thumbnail" href="https://www.roblox.com/games/96639401941432/Climb-67-Slap-Tower" target="_blank" rel="noreferrer"><img src="https://tr.rbxcdn.com/180DAY-d4589323d88a0dcb138b103a3444a0d3/512/512/Image/Png/noFilter" alt="Climb 67 Slap Tower Roblox thumbnail" loading="lazy"></a>
-                    <div class="game-card-content">
-                        <p class="game-role">3D modeling</p>
-                        <h3>Climb 67 Slap Tower</h3>
-                        <p>I modeled the game assets for this climbing challenge.</p>
-                        <dl class="game-stats"><div><dt>Visits</dt><dd>1.07M</dd></div><div><dt>Favorites</dt><dd>63.2K</dd></div><div><dt>Genre</dt><dd>Tower Obby</dd></div></dl>
-                        <a class="game-link" href="https://www.roblox.com/games/96639401941432/Climb-67-Slap-Tower" target="_blank" rel="noreferrer">Play Climb 67 Slap Tower <span aria-hidden="true">&#8599;</span></a>
-                    </div>
-                </article>
-                <article class="game-card">
-                    <a class="game-thumbnail" href="https://www.roblox.com/games/92586670057709/Pirate-Bridge-Battles" target="_blank" rel="noreferrer"><img src="https://tr.rbxcdn.com/180DAY-c1205f223c99f31eefe3e92b34344a30/512/512/Image/Png/noFilter" alt="Pirate Bridge Battles Roblox thumbnail" loading="lazy"></a>
-                    <div class="game-card-content">
-                        <p class="game-role">3D modeling</p>
-                        <h3>Pirate Bridge Battles</h3>
-                        <p>I modeled the game assets for this pirate battle game.</p>
-                        <dl class="game-stats"><div><dt>Visits</dt><dd>95.3K</dd></div><div><dt>Favorites</dt><dd>6.2K</dd></div><div><dt>Genre</dt><dd>Action</dd></div></dl>
-                        <a class="game-link" href="https://www.roblox.com/games/92586670057709/Pirate-Bridge-Battles" target="_blank" rel="noreferrer">Play Pirate Bridge Battles <span aria-hidden="true">&#8599;</span></a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="contact-title">Have an<br>idea?</h2>
-            <p class="contact-sub">I'm open to 3D commissions, game assets, and projects that sound fun to make.</p>
-            <div class="contact-links">
-                <a href="https://www.roblox.com/users/4157941483/profile" target="_blank" class="contact-link">
-                    <img src="Roblox_Logo.svg.png" alt="Roblox"> Roblox
+                <a class="hero-proof" href="#games">
+                    <span class="proof-icons" aria-hidden="true">
+                        <img src="games/climb67-icon.webp" alt="" width="34" height="34">
+                        <img src="games/noobstd-icon.webp" alt="" width="34" height="34">
+                        <img src="games/pirate-icon.webp" alt="" width="34" height="34">
+                        <img src="games/findthekats-icon.webp" alt="" width="34" height="34">
+                    </span>
+                    <span>My models are in games with <strong>1.29M+</strong> visits</span>
                 </a>
-                <a href="https://x.com/EnviousDevelops" target="_blank" class="contact-link">
-                    <i class="fab fa-x-twitter"></i> X (Twitter)
-                </a>
-                <div class="contact-link discord-link">
-                    <i class="fab fa-discord"></i> _nv
-                </div>
             </div>
-        </div>
-    </section>
+            <button class="hero-art" type="button" data-title="Chained Portal" data-gallery="portfolio/portal.png">
+                <img src="portfolio/portal.png" alt="A stone portal wrapped in chains, glowing green under a full moon" width="776" height="807">
+                <span class="hero-art-label">Chained Portal</span>
+            </button>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <span class="footer-logo"><em>Nv</em> &amp; Co.</span>
-            <span class="footer-copy">Built by Nv.</span>
-        </div>
+        <!-- all my models. click stuff to open it big -->
+        <section id="work" class="section wrap">
+            <div class="section-head">
+                <h2>Work</h2>
+                <p>Click anything to see it full size</p>
+            </div>
+
+            <article class="project">
+                <button class="mosaic" type="button" data-title="Theme Maps" data-gallery="portfolio/theme-map-forest.png|portfolio/theme-map-snow.png|portfolio/theme-map-beach.png|portfolio/theme-map-candy.png|portfolio/theme-map-desert.png|portfolio/theme-map-fantasy.png|portfolio/theme-map-space.png|portfolio/theme-map-lava.png" aria-label="Open Theme Maps, 8 images">
+                    <img class="mosaic-main" src="portfolio/theme-map-forest.png" alt="Forest map" loading="lazy">
+                    <img src="portfolio/theme-map-snow.png" alt="Snow map" loading="lazy">
+                    <img src="portfolio/theme-map-lava.png" alt="Lava map" loading="lazy">
+                    <img src="portfolio/theme-map-candy.png" alt="Candy map" loading="lazy">
+                    <span class="media-count">8 images</span>
+                </button>
+                <div class="project-info">
+                    <h3>Theme Maps</h3>
+                    <p>One route, re-skinned eight times: forest, snow, beach, candy, desert, fantasy, space, and lava.</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <button class="mosaic mosaic--two" type="button" data-title="Brainrot Collection" data-gallery="portfolio/brainrots-characters-a.png|portfolio/brainrots-characters-b.png|portfolio/brainrots-spiders.png|portfolio/brainrots-accessories.png" aria-label="Open Brainrot Collection, 4 images">
+                    <img class="mosaic-main" src="portfolio/brainrots-characters-a.png" alt="A crowd of blocky Brainrot characters" loading="lazy">
+                    <img src="portfolio/brainrots-characters-b.png" alt="More Brainrot characters" loading="lazy">
+                    <span class="media-count">4 images</span>
+                </button>
+                <div class="project-info">
+                    <h3>Brainrot Collection</h3>
+                    <p>A big batch of characters, accessories, and spiders, all in the same blocky style.</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <button class="compare" type="button" data-title="Pets, then and now" data-gallery="Screenshot 2025-06-22 113130.png|portfolio/pets.png" aria-label="Open pet comparison, 2 images">
+                    <span class="compare-side"><img src="Screenshot 2025-06-22 113130.png" alt="My older pet models" loading="lazy"><span class="compare-tag">Then</span></span>
+                    <span class="compare-side"><img src="portfolio/pets.png" alt="Newer cat, dog, and bunny pet models" loading="lazy"><span class="compare-tag">Now</span></span>
+                    <span class="media-count">2 images</span>
+                </button>
+                <div class="project-info">
+                    <h3>Pets, then and now</h3>
+                    <p>Left is where I started. Right is about a year later.</p>
+                </div>
+            </article>
+
+            <div class="justified justified--kits">
+                <button class="piece" type="button" data-title="Urban Prop Kit" data-gallery="portfolio/urban-prop-kit.png">
+                    <img src="portfolio/urban-prop-kit.png" alt="Street, gym, and room props" loading="lazy" width="1618" height="1055">
+                    <span class="piece-caption"><strong>Urban Prop Kit</strong><span>Street, gym, and room pieces for filling out a city.</span></span>
+                </button>
+                <button class="piece" type="button" data-title="Road Kit" data-gallery="portfolio/road-kit.png">
+                    <img src="portfolio/road-kit.png" alt="Modular road pieces and intersections" loading="lazy" width="1333" height="793">
+                    <span class="piece-caption"><strong>Road Kit</strong><span>Straights, turns, and intersections that snap together.</span></span>
+                </button>
+                <button class="piece" type="button" data-title="Sniper Set" data-gallery="portfolio/sniper-set.png">
+                    <img src="portfolio/sniper-set.png" alt="A set of sniper rifles" loading="lazy" width="947" height="511">
+                    <span class="piece-caption"><strong>Sniper Set</strong></span>
+                </button>
+                <button class="piece" type="button" data-title="Jester Hats" data-gallery="portfolio/jester-hats.png">
+                    <img src="portfolio/jester-hats.png" alt="Jester hats in several colorways" loading="lazy" width="1764" height="567">
+                    <span class="piece-caption"><strong>Jester Hats</strong><span>One hat, a lot of colorways.</span></span>
+                </button>
+                <button class="piece" type="button" data-title="Revolver" data-gallery="portfolio/revolver.png">
+                    <img src="portfolio/revolver.png" alt="Low-poly revolver" loading="lazy" width="471" height="325">
+                    <span class="piece-caption"><strong>Revolver</strong></span>
+                </button>
+                <button class="piece" type="button" data-title="Axe" data-gallery="portfolio/axe.png">
+                    <img src="portfolio/axe.png" alt="Low-poly axe" loading="lazy" width="476" height="797">
+                    <span class="piece-caption"><strong>Axe</strong></span>
+                </button>
+            </div>
+
+            <!-- old stuff from when i was learning. its hidden by default for a reason -->
+            <details class="older">
+                <summary>Older stuff <span>22 models from when I was still figuring things out</span></summary>
+                <div class="justified justified--small">
+                    <button class="piece" type="button" data-title="Jinx's Minigun" data-gallery="G0EBK6PbkAAT7Kd.jpg"><img src="G0EBK6PbkAAT7Kd.jpg" alt="Jinx's Minigun" loading="lazy" width="680" height="480"><span class="piece-caption"><strong>Jinx's Minigun</strong><span>From League of Legends.</span></span></button>
+                    <button class="piece" type="button" data-title="Coilhead" data-gallery="coilhead.png"><img src="coilhead.png" alt="Coilhead" loading="lazy" width="586" height="887"><span class="piece-caption"><strong>Coilhead</strong><span>Don't look at its feet.</span></span></button>
+                    <button class="piece" type="button" data-title="Chest" data-gallery="GzNe65wbMAA_s5N.png"><img src="GzNe65wbMAA_s5N.png" alt="Chest" loading="lazy" width="597" height="560"><span class="piece-caption"><strong>Chest</strong><span>Got back into Clash Royale.</span></span></button>
+                    <button class="piece" type="button" data-title="Mech?" data-gallery="Machine.webp"><img src="Machine.webp" alt="Mech" loading="lazy" width="373" height="388"><span class="piece-caption"><strong>Mech?</strong><span>Used to be an ice cream truck. It had other plans.</span></span></button>
+                    <button class="piece" type="button" data-title="Trident" data-gallery="trident.png"><img src="trident.png" alt="Trident" loading="lazy" width="465" height="1215"><span class="piece-caption"><strong>Trident</strong><span>Commission.</span></span></button>
+                    <button class="piece" type="button" data-title="Shuu's Kagune" data-gallery="Shu Kagune.png"><img src="Shu Kagune.png" alt="Shuu's Kagune" loading="lazy" width="1495" height="761"><span class="piece-caption"><strong>Shuu's Kagune</strong><span>Tokyo Ghoul.</span></span></button>
+                    <button class="piece" type="button" data-title="Custom Wings" data-gallery="GtyWOJ7bcAAMqd5.jpg"><img src="GtyWOJ7bcAAMqd5.jpg" alt="Custom Wings" loading="lazy" width="680" height="383"><span class="piece-caption"><strong>Custom Wings</strong></span></button>
+                    <button class="piece" type="button" data-title="Pistol" data-gallery="pistol.png"><img src="pistol.png" alt="Pistol" loading="lazy" width="657" height="634"><span class="piece-caption"><strong>Pistol</strong></span></button>
+                    <button class="piece" type="button" data-title="Centipede Kagune" data-gallery="GstfpnJbIAIl0GD.jpg"><img src="GstfpnJbIAIl0GD.jpg" alt="Centipede Kagune" loading="lazy" width="1920" height="1080"><span class="piece-caption"><strong>Centipede Kagune</strong><span>Still want to rig this someday.</span></span></button>
+                    <button class="piece" type="button" data-title="Texture Painting WIP" data-gallery="Gwkca8pbIAAaP77.jpg"><img src="Gwkca8pbIAAaP77.jpg" alt="Texture painting test" loading="lazy" width="680" height="653"><span class="piece-caption"><strong>Texture Painting WIP</strong></span></button>
+                    <button class="piece" type="button" data-title="Angel Wings" data-gallery="Gt1aqusWMAARVHf.jpg"><img src="Gt1aqusWMAARVHf.jpg" alt="Angel Wings" loading="lazy" width="680" height="404"><span class="piece-caption"><strong>Angel Wings</strong><span>Three tiers.</span></span></button>
+                    <button class="piece" type="button" data-title="Jinx's Hand Grenade" data-gallery="image.webp"><img src="image.webp" alt="Jinx's Hand Grenade" loading="lazy" width="1731" height="714"><span class="piece-caption"><strong>Jinx's Hand Grenade</strong></span></button>
+                    <button class="piece" type="button" data-title="Kami's Lookout" data-gallery="Gppzqs9bEAECoYm.png"><img src="Gppzqs9bEAECoYm.png" alt="Kami's Lookout" loading="lazy" width="680" height="616"><span class="piece-caption"><strong>Kami's Lookout</strong><span>Dragon Ball Z.</span></span></button>
+                    <button class="piece" type="button" data-title="Donut" data-gallery="Gdwe-BIbUAAujiQ.webp"><img src="Gdwe-BIbUAAujiQ.webp" alt="Donut" loading="lazy" width="680" height="421"><span class="piece-caption"><strong>Donut</strong><span>Never watched the tutorial.</span></span></button>
+                    <button class="piece" type="button" data-title="Sea Urchin" data-gallery="GjxCzxdaYAApxWC.png"><img src="GjxCzxdaYAApxWC.png" alt="Sea Urchin" loading="lazy" width="556" height="585"><span class="piece-caption"><strong>Sea Urchin</strong></span></button>
+                    <button class="piece" type="button" data-title="Turret" data-gallery="GkxzEUQaoAI-9_h.png"><img src="GkxzEUQaoAI-9_h.png" alt="Turret" loading="lazy" width="540" height="561"><span class="piece-caption"><strong>Turret</strong></span></button>
+                    <button class="piece" type="button" data-title="Man Fan" data-gallery="GkxzPw9aoAAKcyh.png"><img src="GkxzPw9aoAAKcyh.png" alt="Man Fan" loading="lazy" width="680" height="595"><span class="piece-caption"><strong>Man Fan</strong><span>As a man, I am a fan of the man fan.</span></span></button>
+                    <button class="piece" type="button" data-title="Anime Cloud" data-gallery="Gp2JKQ0aYAIFdTS.png"><img src="Gp2JKQ0aYAIFdTS.png" alt="Anime-style cloud" loading="lazy" width="680" height="472"><span class="piece-caption"><strong>Anime Cloud</strong></span></button>
+                    <button class="piece" type="button" data-title="R6 Muscles" data-gallery="Gp2KHRybAAAMLXQ.png"><img src="Gp2KHRybAAAMLXQ.png" alt="R6 muscle sculpt" loading="lazy" width="680" height="525"><span class="piece-caption"><strong>R6 Muscles</strong><span>No anatomy knowledge required, apparently.</span></span></button>
+                    <button class="piece" type="button" data-title="Patrick Star" data-gallery="GnFZxiDbgAMYz3P.png"><img src="GnFZxiDbgAMYz3P.png" alt="Patrick Star" loading="lazy" width="438" height="680"><span class="piece-caption"><strong>Patrick Star</strong></span></button>
+                    <button class="piece" type="button" data-title="Chicken Jockey" data-gallery="GpU_dQJbcAAzQK0.png"><img src="GpU_dQJbcAAzQK0.png" alt="Chicken Jockey" loading="lazy" width="604" height="680"><span class="piece-caption"><strong>Chicken Jockey</strong><span>I was bored, alright?</span></span></button>
+                    <button class="piece" type="button" data-title="Turtle Shell Shield" data-gallery="Gjw-SCZbwAAZoOe.png"><img src="Gjw-SCZbwAAZoOe.png" alt="Turtle Shell Shield" loading="lazy" width="580" height="680"><span class="piece-caption"><strong>Turtle Shell Shield</strong><span>For a friend.</span></span></button>
+                </div>
+            </details>
+        </section>
+
+        <!-- games ive worked on. stats are prob outdated by the time anyone reads this -->
+        <section id="games" class="section section--band wrap">
+            <div class="section-head">
+                <h2>Games</h2>
+                <p>Stats from Roblox, Oct 2026</p>
+            </div>
+
+            <div class="game-grid">
+                <article class="game">
+                    <button class="game-media" type="button" data-title="Climb 67 Slap Tower" data-gallery="games/climb67-1.webp|games/climb67-2.webp" aria-label="Open Climb 67 Slap Tower screenshots">
+                        <img src="games/climb67-1.webp" alt="" loading="lazy" width="768" height="432">
+                        <span class="media-count">2 images</span>
+                    </button>
+                    <div class="game-info">
+                        <div class="game-head">
+                            <img src="games/climb67-icon.webp" alt="" width="44" height="44">
+                            <div>
+                                <h3>Climb 67 Slap Tower</h3>
+                                <p class="game-team"><img src="teams/openabyss.webp" alt="" width="16" height="16"> Open Abyss</p>
+                            </div>
+                        </div>
+                        <p>Tower obby, published by Top Towers. I made the 3D models.</p>
+                        <dl class="game-stats">
+                            <div><dt>Visits</dt><dd>1.07M</dd></div>
+                            <div><dt>Favorites</dt><dd>63.5K</dd></div>
+                        </dl>
+                        <a class="game-link" href="https://www.roblox.com/games/96639401941432/Climb-67-Slap-Tower" target="_blank" rel="noreferrer">Play on Roblox <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+
+                <article class="game">
+                    <button class="game-media" type="button" data-title="Noobs TD" data-gallery="games/noobstd-1.webp|games/noobstd-2.webp|games/noobstd-3.webp" aria-label="Open Noobs TD screenshots">
+                        <img src="games/noobstd-1.webp" alt="" loading="lazy" width="768" height="432">
+                        <span class="media-count">3 images</span>
+                    </button>
+                    <div class="game-info">
+                        <div class="game-head">
+                            <img src="games/noobstd-icon.webp" alt="" width="44" height="44">
+                            <div>
+                                <h3>Noobs TD</h3>
+                                <p class="game-team"><img src="teams/devsdevsdevs.webp" alt="" width="16" height="16"> Devs Devs Devs</p>
+                            </div>
+                        </div>
+                        <p>Tower defense, still getting updates. I'm on the Noobs TD team and made the 3D models.</p>
+                        <dl class="game-stats">
+                            <div><dt>Visits</dt><dd>128K</dd></div>
+                            <div><dt>Favorites</dt><dd>4.5K</dd></div>
+                        </dl>
+                        <a class="game-link" href="https://www.roblox.com/games/85320160130402/Noobs-TD" target="_blank" rel="noreferrer">Play on Roblox <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+
+                <article class="game">
+                    <button class="game-media" type="button" data-title="Pirate Bridge Battles" data-gallery="games/pirate-5.webp|games/pirate-1.webp|games/pirate-2.webp|games/pirate-3.webp|games/pirate-4.webp" aria-label="Open Pirate Bridge Battles screenshots">
+                        <img src="games/pirate-5.webp" alt="" loading="lazy" width="768" height="432">
+                        <span class="media-count">5 images</span>
+                    </button>
+                    <div class="game-info">
+                        <div class="game-head">
+                            <img src="games/pirate-icon.webp" alt="" width="44" height="44">
+                            <div>
+                                <h3>Pirate Bridge Battles</h3>
+                                <p class="game-team"><img src="teams/openabyss.webp" alt="" width="16" height="16"> Open Abyss</p>
+                            </div>
+                        </div>
+                        <p>Pirate battle game, published by 0 Favorites Games. I made the 3D models.</p>
+                        <dl class="game-stats">
+                            <div><dt>Visits</dt><dd>95.3K</dd></div>
+                            <div><dt>Favorites</dt><dd>6.2K</dd></div>
+                        </dl>
+                        <a class="game-link" href="https://www.roblox.com/games/92586670057709/Pirate-Bridge-Battles" target="_blank" rel="noreferrer">Play on Roblox <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+
+                <article class="game game--mine">
+                    <button class="game-media" type="button" data-title="Find the Kats" data-gallery="games/findthekats-1.webp" aria-label="Open Find the Kats thumbnail">
+                        <img src="games/findthekats-1.webp" alt="" loading="lazy" width="768" height="432">
+                    </button>
+                    <div class="game-info">
+                        <div class="game-head">
+                            <img src="games/findthekats-icon.webp" alt="" width="44" height="44">
+                            <div>
+                                <h3>Find the Kats</h3>
+                                <p class="game-team game-team--mine">Solo project</p>
+                            </div>
+                        </div>
+                        <p>Explore the town of Mewshire, solve puzzles, and collect hidden Kats. I made all of it. Not popular yet. Call it exclusive.</p>
+                        <dl class="game-stats">
+                            <div><dt>Visits</dt><dd>143</dd></div>
+                            <div><dt>Favorites</dt><dd>4</dd></div>
+                        </dl>
+                        <a class="game-link" href="https://www.roblox.com/games/125712869239665/Find-the-Kats" target="_blank" rel="noreferrer">Play on Roblox <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+            </div>
+
+            <p class="game-extras">
+                Smaller solo games:
+                <a href="https://www.roblox.com/games/115027898749081" target="_blank" rel="noreferrer">Grow a Circle</a> (2025),
+                <a href="https://www.roblox.com/games/12064488491" target="_blank" rel="noreferrer">Crystal Clicker</a> (2023),
+                and a few browser games <a href="https://enviousdeveloper.itch.io/" target="_blank" rel="noreferrer">on itch.io</a>.
+            </p>
+        </section>
+
+        <!-- about me + teams -->
+        <section id="about" class="section wrap">
+            <div class="section-head">
+                <h2>About</h2>
+                <p>Making Roblox games since 2022</p>
+            </div>
+            <div class="about">
+                <div class="about-text">
+                    <p>I'm Nv. I mostly do low-poly models in Blender and bring them into Studio: maps, props, weapons, characters, and modular kits.</p>
+                    <p>Send me a reference, or just describe what you want, and I'll work out how to make it fit your game.</p>
+                </div>
+                <ul class="about-facts">
+                    <li><span>Tools</span>Blender, Roblox Studio</li>
+                    <li><span>Good at</span>Low-poly models, maps, modular kits</li>
+                    <li><span>Not yet</span>Rigging, hand-painted textures, animation</li>
+                </ul>
+            </div>
+
+            <h3 class="subhead">Teams I'm on</h3>
+            <div class="teams">
+                <article class="team team--own">
+                    <div class="team-head">
+                        <img src="teams/nvco.webp" alt="" width="48" height="48">
+                        <div><h4>Nv &amp; Co.</h4><p>Founder</p></div>
+                    </div>
+                    <p>My own studio, for games with more beneath the surface. My solo projects live here.</p>
+                    <a href="https://www.roblox.com/communities/16709630" target="_blank" rel="noreferrer">View on Roblox ↗</a>
+                </article>
+                <article class="team">
+                    <div class="team-head">
+                        <img src="teams/openabyss.webp" alt="" width="48" height="48">
+                        <div><h4>Open Abyss</h4><p>Developer</p></div>
+                    </div>
+                    <p>A Roblox team I build with. They run Top Towers. I modeled for Climb 67 Slap Tower and Pirate Bridge Battles.</p>
+                    <a href="https://www.roblox.com/communities/581063242" target="_blank" rel="noreferrer">View on Roblox ↗</a>
+                </article>
+                <article class="team">
+                    <div class="team-head">
+                        <img src="teams/devsdevsdevs.webp" alt="" width="48" height="48">
+                        <div><h4>Devs Devs Devs</h4><p>Noobs TD team</p></div>
+                    </div>
+                    <p>A big studio with over a million members. I worked on one of their games: Noobs TD.</p>
+                    <a href="https://www.roblox.com/communities/10353739" target="_blank" rel="noreferrer">View on Roblox ↗</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- contact. pls hire me -->
+        <section id="contact" class="section wrap contact">
+            <div class="contact-text">
+                <h2>Want something made?</h2>
+                <p>Commissions, game assets, or a project that sounds fun. My DMs are open.</p>
+            </div>
+            <ul class="contact-list">
+                <li>
+                    <a href="https://x.com/EnviousDevelops" target="_blank" rel="noreferrer">
+                        <span class="contact-label"><i class="fab fa-x-twitter" aria-hidden="true"></i> X</span>
+                        <span class="contact-handle">@EnviousDevelops</span>
+                        <span class="contact-arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.roblox.com/users/4157941483/profile" target="_blank" rel="noreferrer">
+                        <span class="contact-label"><img src="Roblox_Logo.svg.png" alt="" width="14" height="14"> Roblox</span>
+                        <span class="contact-handle">EnviousDeveloper</span>
+                        <span class="contact-arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li>
+                    <div>
+                        <span class="contact-label"><i class="fab fa-discord" aria-hidden="true"></i> Discord</span>
+                        <span class="contact-handle">_nv</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer wrap">
+        <span><em>Nv</em> &amp; Co.</span>
+        <a href="#top">Back to top ↑</a>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" aria-hidden="true" role="dialog">
-        <div class="lightbox-backdrop"></div>
-        <div class="lightbox-content">
-            <button class="lightbox-close" aria-label="Close">&times;</button>
-            <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#8592;</button>
-            <img class="lightbox-image" src="" alt="">
-            <button class="lightbox-nav lightbox-next" aria-label="Next image">&#8594;</button>
-            <div class="lightbox-caption"></div>
+    <!-- popup image viewer, script.js does all the work. its empty until u click something -->
+    <div class="viewer" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+        <div class="viewer-top">
+            <span class="viewer-title"></span>
+            <span class="viewer-caption"></span>
+            <span class="viewer-count"></span>
+            <button class="viewer-close" aria-label="Close">&times;</button>
         </div>
+        <div class="viewer-stage">
+            <button class="viewer-nav viewer-prev" aria-label="Previous image">&#8592;</button>
+            <img class="viewer-image" src="" alt="">
+            <button class="viewer-nav viewer-next" aria-label="Next image">&#8594;</button>
+        </div>
+        <div class="viewer-strip"></div>
     </div>
 
     <script src="script.js"></script>

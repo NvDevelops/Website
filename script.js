@@ -1,297 +1,277 @@
-// ==========================================
-// Navbar: scroll effect + active link tracking
-// ==========================================
-const navbar = document.querySelector('.navbar');
+// hamburger menu for phones
+let menuButton = document.querySelector('.menu-toggle');
+let navLinks = document.querySelector('.nav-links');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+menuButton.addEventListener('click', function () {
+    if (navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
     } else {
-        navbar.classList.remove('scrolled');
+        navLinks.classList.add('open');
+        menuButton.setAttribute('aria-expanded', 'true');
     }
-}, { passive: true });
+});
 
-// Active nav link on scroll
-const sections = Array.from(document.querySelectorAll('section[id]'));
-const navItems = document.querySelectorAll('.nav-links a');
-
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            navItems.forEach(link => link.classList.remove('active'));
-            const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-            if (active) active.classList.add('active');
-        }
-    });
-}, { threshold: 0.35 });
-
-sections.forEach(s => sectionObserver.observe(s));
-
-// ==========================================
-// Hamburger Menu
-// ==========================================
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('open');
-        hamburger.classList.toggle('active', isOpen);
-        hamburger.setAttribute('aria-expanded', isOpen);
-    });
-
-    // Close on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-        });
-    });
-
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-        if (!navbar.contains(e.target) && navLinks.classList.contains('open')) {
-            navLinks.classList.remove('open');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-        }
+// close the menu when u click a link otherwise it just sits there covering everything
+let allNavLinks = document.querySelectorAll('.nav-links a');
+for (let i = 0; i < allNavLinks.length; i++) {
+    allNavLinks[i].addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
     });
 }
 
-// ==========================================
-// Smooth Scroll
-// ==========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// makes the nav link light up for whatever section ur looking at
+// the rootMargin numbers are just random until it worked dont ask
+let observer = new IntersectionObserver(function (entries) {
+    for (let i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+            let id = entries[i].target.id;
+            for (let j = 0; j < allNavLinks.length; j++) {
+                if (allNavLinks[j].getAttribute('href') == '#' + id) {
+                    allNavLinks[j].classList.add('active');
+                } else {
+                    allNavLinks[j].classList.remove('active');
+                }
+            }
         }
+    }
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+let sections = document.querySelectorAll('main section[id]');
+for (let i = 0; i < sections.length; i++) {
+    observer.observe(sections[i]);
+}
+
+// the image rows thing. each piece needs to know how wide the image is compared to how tall
+// so the css can make them all the same height. if u add an image put width and height on it
+// or it will look scuffed for like half a second
+let pieces = document.querySelectorAll('.justified .piece');
+for (let i = 0; i < pieces.length; i++) {
+    let piece = pieces[i];
+    let img = piece.querySelector('img');
+
+    let w = img.getAttribute('width');
+    let h = img.getAttribute('height');
+    if (w && h) {
+        piece.style.setProperty('--r', w / h);
+    }
+
+    // backup for when i forget the width/height (i will forget)
+    img.addEventListener('load', function () {
+        piece.style.setProperty('--r', img.naturalWidth / img.naturalHeight);
     });
-});
+}
 
-// Put each piece of work in the kind of portfolio section it belongs in.
-(function organizePortfolio() {
-    const portfolio = document.querySelector('#portfolio');
-    const host = portfolio?.querySelector('.portfolio-groups');
-    if (!portfolio || !host) return;
 
-    const categories = [
-        {
-            title: 'Maps & environment assets',
-            work: ['Theme Maps', 'Chained Portal', 'Road Kit', 'Urban Prop Kit', 'Anime Style Cloud', "Kami's Lookout"]
-        },
-        {
-            title: 'Weapons & combat assets',
-            work: ['Revolver', 'Sniper Set', 'Pistol', 'Trident', 'Turret']
-        },
-        {
-            title: 'Brainrots, pets & UGC',
-            work: ['Brainrot Asset Collection', 'Pet Models: Then and Now', 'Jester Hat Variants', 'Custom Wings', 'Angel Wings', 'R6 Muscles']
-        },
-        {
-            title: 'Game-inspired models',
-            work: ["Jinx's Minigun", 'Chest', "Shuu's Kagune", 'Coilhead Model', 'Centipede Kagune', "Jinx's Hand Grenade", 'Patrick Star', 'CHICKEN JOCKEY!', 'Enderman']
-        },
-        {
-            title: 'Miscellaneous & experiments',
-            work: ['Axe', 'Turtle Shell Shield', 'Texture Painting WIP', 'Mech?', 'Donut', 'Sea Urchin', 'Man Fan']
-        }
-    ];
+// ---------------- IMAGE VIEWER ----------------
+// anything with data-gallery="pic1.png|pic2.png" opens this
+// this was by far the most annoying part of the whole site
 
-    const allCards = Array.from(portfolio.querySelectorAll('.collection-card, .work-item'));
-    const getTitle = (card) => card.dataset.title || card.querySelector('h3, h4')?.textContent || '';
+let viewer = document.querySelector('.viewer');
+let viewerTitle = document.querySelector('.viewer-title');
+let viewerCaption = document.querySelector('.viewer-caption');
+let viewerCount = document.querySelector('.viewer-count');
+let viewerImg = document.querySelector('.viewer-image');
+let viewerStage = document.querySelector('.viewer-stage');
+let viewerStrip = document.querySelector('.viewer-strip');
+let prevButton = document.querySelector('.viewer-prev');
+let nextButton = document.querySelector('.viewer-next');
+let closeButton = document.querySelector('.viewer-close');
 
-    categories.forEach((category) => {
-        const section = document.createElement('section');
-        section.className = 'work-category portfolio-category';
+let images = [];
+let currentImage = 0;
+let lastClicked = null;
+let zoom = 1;
+let moveX = 0;
+let moveY = 0;
 
-        const label = document.createElement('p');
-        label.className = 'category-label';
-        label.textContent = category.title;
-
-        const collectionGrid = document.createElement('div');
-        collectionGrid.className = 'collection-grid';
-        const workGrid = document.createElement('div');
-        workGrid.className = 'work-grid';
-
-        category.work.forEach((title) => {
-            const card = allCards.find((item) => getTitle(item) === title);
-            if (card) (card.classList.contains('collection-card') ? collectionGrid : workGrid).append(card);
-        });
-
-        section.append(label);
-        if (collectionGrid.childElementCount) section.append(collectionGrid);
-        if (workGrid.childElementCount) section.append(workGrid);
-        host.append(section);
-    });
-
-    portfolio.querySelectorAll('.featured-work, .work-category:not(.portfolio-category)').forEach((section) => section.remove());
-})();
-
-// The individual asset cards are older archive work, rather than a new batch.
-document.querySelectorAll('.work-item .work-content').forEach((content) => {
-    const archiveTag = document.createElement('span');
-    archiveTag.className = 'archive-tag';
-    archiveTag.textContent = '2025 or earlier';
-    content.prepend(archiveTag);
-});
-
-// Make the older gallery work with a mouse, touch, or keyboard.
-document.querySelectorAll('.work-item').forEach((card) => {
-    const title = card.querySelector('h4')?.textContent || 'portfolio item';
-    card.tabIndex = 0;
-    card.setAttribute('role', 'button');
-    card.setAttribute('aria-label', `Open ${title}`);
-    card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            card.click();
-        }
-    });
-});
-
-// ==========================================
-// Image lazy-load fade-in
-// ==========================================
-document.querySelectorAll('img:not(.lightbox-image)').forEach(img => {
-    if (img.complete && img.naturalWidth > 0) {
-        img.classList.add('loaded');
+function updateZoom() {
+    viewerImg.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px) scale(' + zoom + ')';
+    if (zoom > 1) {
+        viewerImg.style.cursor = 'grab';
     } else {
-        img.addEventListener('load', () => img.classList.add('loaded'));
-        img.addEventListener('error', () => {
-            img.style.opacity = '0.3';
-        });
+        viewerImg.style.cursor = 'zoom-in';
+    }
+}
+
+function resetZoom() {
+    zoom = 1;
+    moveX = 0;
+    moveY = 0;
+    updateZoom();
+}
+
+function showImage(number) {
+    // wraps around so going past the last one goes back to the first
+    if (number < 0) number = images.length - 1;
+    if (number >= images.length) number = 0;
+    currentImage = number;
+
+    resetZoom();
+    viewerImg.src = images[currentImage];
+    viewerImg.alt = viewerTitle.textContent;
+
+    if (images.length > 1) {
+        viewerCount.textContent = (currentImage + 1) + ' / ' + images.length;
+    } else {
+        viewerCount.textContent = '';
+    }
+
+    let thumbs = viewerStrip.querySelectorAll('button');
+    for (let i = 0; i < thumbs.length; i++) {
+        if (i == currentImage) {
+            thumbs[i].setAttribute('aria-current', 'true');
+            thumbs[i].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        } else {
+            thumbs[i].setAttribute('aria-current', 'false');
+        }
+    }
+}
+
+function openViewer(gallery, title, caption) {
+    images = gallery;
+    lastClicked = document.activeElement;
+    viewerTitle.textContent = title;
+    viewerCaption.textContent = caption;
+
+    // no arrows or thumbnails if theres only one pic
+    if (images.length > 1) {
+        prevButton.hidden = false;
+        nextButton.hidden = false;
+        viewerStrip.hidden = false;
+        let html = '';
+        for (let i = 0; i < images.length; i++) {
+            html += '<button type="button" aria-label="Image ' + (i + 1) + '"><img src="' + images[i] + '" alt=""></button>';
+        }
+        viewerStrip.innerHTML = html;
+    } else {
+        prevButton.hidden = true;
+        nextButton.hidden = true;
+        viewerStrip.hidden = true;
+        viewerStrip.innerHTML = '';
+    }
+
+    viewer.hidden = false;
+    document.body.style.overflow = 'hidden'; // stops the page scrolling behind it
+    showImage(0);
+    closeButton.focus();
+}
+
+function closeViewer() {
+    viewer.hidden = true;
+    document.body.style.overflow = '';
+    viewerImg.src = '';
+    if (lastClicked) lastClicked.focus();
+}
+
+document.addEventListener('click', function (e) {
+    let clicked = e.target.closest('[data-gallery]');
+    if (!clicked) return;
+    if (viewer.contains(clicked)) return;
+
+    let caption = '';
+    let captionSpan = clicked.querySelector('.piece-caption span');
+    if (captionSpan) caption = captionSpan.textContent;
+
+    openViewer(clicked.dataset.gallery.split('|'), clicked.dataset.title || '', caption);
+});
+
+viewerStrip.addEventListener('click', function (e) {
+    let thumb = e.target.closest('button');
+    if (!thumb) return;
+    let thumbs = Array.from(viewerStrip.children);
+    showImage(thumbs.indexOf(thumb));
+});
+
+prevButton.addEventListener('click', function () {
+    showImage(currentImage - 1);
+});
+
+nextButton.addEventListener('click', function () {
+    showImage(currentImage + 1);
+});
+
+closeButton.addEventListener('click', closeViewer);
+
+// click the dark part around the pic to close it
+viewerStage.addEventListener('click', function (e) {
+    if (e.target == viewerStage) closeViewer();
+});
+
+document.addEventListener('keydown', function (e) {
+    if (viewer.hidden) return;
+    if (e.key == 'Escape') closeViewer();
+    if (e.key == 'ArrowLeft' && images.length > 1) showImage(currentImage - 1);
+    if (e.key == 'ArrowRight' && images.length > 1) showImage(currentImage + 1);
+});
+
+
+// zoom + drag stuff. click to zoom, scroll wheel zooms, drag to move around
+// on phones u swipe to change pics
+// i rewrote this like 4 times and its still kinda jank but it works so im not touching it
+
+let dragStart = null;
+let didDrag = false;
+
+viewerImg.addEventListener('dragstart', function (e) {
+    e.preventDefault(); // otherwise chrome tries to drag the actual image file lol
+});
+
+viewerImg.addEventListener('click', function () {
+    if (didDrag) return; // so letting go of a drag doesnt count as a click
+    if (zoom > 1) {
+        resetZoom();
+    } else {
+        zoom = 2;
+        updateZoom();
     }
 });
 
-// ==========================================
-// Lightbox
-// ==========================================
-(function initLightbox() {
-    const lightbox = document.querySelector('.lightbox');
-    if (!lightbox) return;
-
-    const backdrop = lightbox.querySelector('.lightbox-backdrop');
-    const imgEl = lightbox.querySelector('.lightbox-image');
-    const captionEl = lightbox.querySelector('.lightbox-caption');
-    const closeBtn = lightbox.querySelector('.lightbox-close');
-    const prevBtn = lightbox.querySelector('.lightbox-prev');
-    const nextBtn = lightbox.querySelector('.lightbox-next');
-
-    let scale = 1, originX = 0, originY = 0;
-    let isPanning = false, startX = 0, startY = 0;
-    let gallery = [];
-    let galleryIndex = 0;
-
-    function applyTransform() {
-        imgEl.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+viewerStage.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+        zoom = zoom + 0.2;
+    } else {
+        zoom = zoom - 0.2;
     }
-
-    function resetTransform() {
-        scale = 1; originX = 0; originY = 0;
-        imgEl.style.transition = 'transform 0.2s ease';
-        applyTransform();
+    if (zoom > 4) zoom = 4;
+    if (zoom < 1) zoom = 1;
+    if (zoom == 1) {
+        moveX = 0;
+        moveY = 0;
     }
+    updateZoom();
+}, { passive: false });
 
-    function renderGalleryImage() {
-        const src = gallery[galleryIndex];
-        const hasMultipleImages = gallery.length > 1;
-        resetTransform();
-        imgEl.style.opacity = '1';
-        imgEl.style.filter = 'none';
-        imgEl.style.mixBlendMode = 'normal';
-        imgEl.src = src;
-        imgEl.alt = lightbox.dataset.title || 'Preview';
-        captionEl.textContent = hasMultipleImages
-            ? `${lightbox.dataset.title} · ${galleryIndex + 1} of ${gallery.length}`
-            : lightbox.dataset.title || '';
-        prevBtn.hidden = !hasMultipleImages;
-        nextBtn.hidden = !hasMultipleImages;
-    }
+viewerImg.addEventListener('pointerdown', function (e) {
+    didDrag = false;
+    dragStart = { x: e.clientX, y: e.clientY, startX: moveX, startY: moveY };
+    viewerImg.setPointerCapture(e.pointerId);
+});
 
-    function open(images, title) {
-        gallery = images;
-        galleryIndex = 0;
-        lightbox.dataset.title = title || '';
-        resetTransform();
-        renderGalleryImage();
-        lightbox.classList.add('is-visible');
-        lightbox.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
+viewerImg.addEventListener('pointermove', function (e) {
+    if (!dragStart) return;
+    if (zoom == 1) return;
+    let dx = e.clientX - dragStart.x;
+    let dy = e.clientY - dragStart.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) didDrag = true;
+    moveX = dragStart.startX + dx;
+    moveY = dragStart.startY + dy;
+    updateZoom();
+});
 
-    function close() {
-        lightbox.classList.remove('is-visible');
-        lightbox.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        requestAnimationFrame(() => { imgEl.src = ''; });
-    }
-
-    // Open on portfolio image click
-    document.addEventListener('click', (e) => {
-        const collection = e.target.closest('.collection-card');
-        if (collection) {
-            open(collection.dataset.gallery.split('|'), collection.dataset.title);
-            return;
+viewerImg.addEventListener('pointerup', function (e) {
+    // swipe = moved more than 50px sideways while not zoomed in
+    if (dragStart && zoom == 1 && images.length > 1) {
+        let dx = e.clientX - dragStart.x;
+        if (dx < -50) {
+            didDrag = true;
+            showImage(currentImage + 1);
+        } else if (dx > 50) {
+            didDrag = true;
+            showImage(currentImage - 1);
         }
-
-        const card = e.target.closest('.work-item');
-        if (card) {
-            const img = card.querySelector('.work-image img');
-            const title = card.querySelector('h4')?.textContent || '';
-            if (img) open([img.src], title);
-        }
-    });
-
-    backdrop.addEventListener('click', close);
-    closeBtn.addEventListener('click', close);
-    prevBtn.addEventListener('click', () => {
-        galleryIndex = (galleryIndex - 1 + gallery.length) % gallery.length;
-        renderGalleryImage();
-    });
-    nextBtn.addEventListener('click', () => {
-        galleryIndex = (galleryIndex + 1) % gallery.length;
-        renderGalleryImage();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') close();
-        if (e.key === 'ArrowLeft' && lightbox.classList.contains('is-visible') && gallery.length > 1) prevBtn.click();
-        if (e.key === 'ArrowRight' && lightbox.classList.contains('is-visible') && gallery.length > 1) nextBtn.click();
-    });
-
-    imgEl.addEventListener('dragstart', (e) => e.preventDefault());
-
-    // Wheel zoom
-    lightbox.addEventListener('wheel', (e) => {
-        if (!lightbox.classList.contains('is-visible')) return;
-        e.preventDefault();
-        imgEl.style.transition = 'none';
-        scale = Math.min(4, Math.max(1, scale - Math.sign(e.deltaY) * 0.12));
-        applyTransform();
-    }, { passive: false });
-
-    // Pan when zoomed
-    imgEl.addEventListener('mousedown', (e) => {
-        if (scale <= 1) return;
-        isPanning = true;
-        startX = e.clientX - originX;
-        startY = e.clientY - originY;
-        imgEl.style.cursor = 'grabbing';
-        imgEl.style.transition = 'none';
-    });
-
-    window.addEventListener('mousemove', (e) => {
-        if (!isPanning) return;
-        originX = e.clientX - startX;
-        originY = e.clientY - startY;
-        applyTransform();
-    });
-
-    window.addEventListener('mouseup', () => {
-        isPanning = false;
-        imgEl.style.cursor = '';
-    });
-})();
+    }
+    dragStart = null;
+});
